@@ -368,86 +368,6 @@
     }
 
     /* ════════════════════
-       CONTACT
-    ════════════════════ */
-    .contact-intro {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    .contact-intro h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      letter-spacing: 0.06em;
-      color: var(--ink);
-      margin-bottom: 0.6rem;
-    }
-    .contact-intro h2 em { font-style: normal; color: var(--accent); }
-    .contact-intro p {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 300;
-      line-height: 1.75;
-      color: var(--muted);
-      max-width: 420px;
-      margin: 0 auto;
-    }
-
-    .contact-form {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
-    .form-field.full { grid-column: 1 / -1; }
-
-    .form-field label {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .form-field input,
-    .form-field textarea {
-      width: 100%;
-      padding: 0.65rem 0.85rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 0.5rem;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 300;
-      color: var(--ink);
-      outline: none;
-      transition: border-color 0.2s;
-      resize: vertical;
-    }
-    .form-field input::placeholder,
-    .form-field textarea::placeholder { color: var(--muted); opacity: 0.5; }
-    .form-field input:focus,
-    .form-field textarea:focus { border-color: var(--accent); }
-
-    .btn-submit {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.7rem 1.8rem;
-      background: var(--ink);
-      color: var(--bg);
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 0.5rem;
-      transition: opacity 0.2s;
-    }
-    .btn-submit:hover { opacity: 0.75; }
-
-    /* ════════════════════
        FOOTER
     ════════════════════ */
     footer {
@@ -512,7 +432,6 @@
         <a href="#hero">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
       </nav>
       <div class="navbar-icons">
         <a class="icon-btn" href="mailto:your@email.com" title="Email">
@@ -610,30 +529,6 @@
         </div>
       </section>
 
-      <!-- CONTACT -->
-      <section class="section" id="contact">
-        <div class="contact-intro">
-          <h2>Let's Build <em>Something</em> Together</h2>
-          <p>Have a project in mind or just want to say hello? Drop me a line.</p>
-        </div>
-        <form class="contact-form" action="#" onsubmit="return false;">
-          <div class="form-field">
-            <label for="cf-name">Name</label>
-            <input id="cf-name" type="text" placeholder="Your Name" autocomplete="name" />
-          </div>
-          <div class="form-field">
-            <label for="cf-email">Email</label>
-            <input id="cf-email" type="email" placeholder="you@example.com" autocomplete="email" />
-          </div>
-          <div class="form-field full">
-            <label for="cf-message">Message</label>
-            <textarea id="cf-message" rows="4" placeholder="Tell me about your project…"></textarea>
-          </div>
-          <div class="form-field full">
-            <button class="btn-submit" type="submit">Send Message</button>
-          </div>
-        </form>
-      </section>
 
     </main>
 
