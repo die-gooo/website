@@ -20,10 +20,7 @@
       --ink:    #1a1814;
       --accent: #c8a96e;
       --muted:  #9e9890;
-      --border: rgba(26,24,20,0.1);
     }
-
-    html, body { height: 100%; width: 100%; }
 
     body {
       background-color: var(--bg);
@@ -31,510 +28,256 @@
       min-height: 100vh;
       cursor: default;
     }
-
     a, button { cursor: pointer; }
 
-    /* ── Noise overlay ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      background-size: 150px 150px;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.4;
-    }
-
-    /* ── Layout ── */
     .page-wrapper {
-      position: relative;
-      z-index: 2;
-      max-width: 960px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 0 2.5rem;
+      padding: 0 2rem;
     }
 
-    /* ════════════════════
-       NAVBAR
-    ════════════════════ */
+    /* NAVBAR */
     .navbar {
-      position: sticky;
-      top: 1.25rem;
-      z-index: 50;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.65rem 1.5rem;
-      border: 1px solid var(--border);
-      border-radius: 0.75rem;
-      background: rgba(247,245,242,0.88);
-      backdrop-filter: blur(10px);
-      margin: 1.25rem 0;
+      padding: 2.5rem 0;
     }
-
     .navbar-brand {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.1em;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--ink);
       text-decoration: none;
     }
-
     .navbar-links { display: flex; gap: 2rem; }
     .navbar-links a {
       font-family: 'Barlow', sans-serif;
       font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
+      font-weight: 400;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
       transition: color 0.2s;
     }
-    .navbar-links a:hover { color: var(--accent); }
+    .navbar-links a:hover { color: var(--ink); }
 
-    .navbar-icons { display: flex; gap: 0.4rem; }
-    .icon-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px; height: 34px;
-      border: 1px solid var(--border);
-      border-radius: 0.5rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-    }
-    .icon-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(200,169,110,0.07);
-    }
-    .icon-btn svg { width: 14px; height: 14px; fill: currentColor; }
-
-    /* ════════════════════
-       HERO
-    ════════════════════ */
+    /* HERO */
     .hero {
-      position: relative;
-      min-height: 92vh;
+      min-height: 85vh;
       display: flex;
-      align-items: center;
-      gap: 4rem;
-      padding: 3rem 0;
-    }
-
-    .hero-line-top, .hero-line-bottom {
-      position: absolute;
-      left: 0; right: 0;
-      height: 1px;
-      background: var(--ink);
-      opacity: 0.1;
-    }
-    .hero-line-top    { top: 0; }
-    .hero-line-bottom { bottom: 0; }
-
-    .hero-corner {
-      position: absolute;
-      width: 10px; height: 10px;
-      opacity: 0.2;
-    }
-    .hero-corner::before, .hero-corner::after {
-      content: ''; position: absolute; background: var(--ink);
-    }
-    .hero-corner::before { width: 1px; height: 100%; left: 0; top: 0; }
-    .hero-corner::after  { width: 100%; height: 1px; left: 0; top: 0; }
-    .hero-corner.tl { top: 0;    left: 0; }
-    .hero-corner.tr { top: 0;    right: 0; transform: scaleX(-1); }
-    .hero-corner.bl { bottom: 0; left: 0;  transform: scaleY(-1); }
-    .hero-corner.br { bottom: 0; right: 0; transform: scale(-1); }
-
-    .hero-photo {
-      flex-shrink: 0;
-      width: 240px; height: 240px;
-      border-radius: 0.75rem;
-      background: rgba(26,24,20,0.05);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      opacity: 0;
-      animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) 0.15s forwards;
-    }
-    .hero-photo-label {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      opacity: 0.5;
-    }
-
-    .hero-content { display: flex; flex-direction: column; gap: 1.25rem; }
-
-    .headline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.6rem, 6.5vw, 4.2rem);
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      line-height: 1;
-      color: var(--ink);
-      opacity: 0;
-      animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
-    }
-    .headline em { font-style: normal; color: var(--accent); }
-
-    .hero-bio {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.92rem;
-      font-weight: 300;
-      line-height: 1.75;
-      color: var(--muted);
-      max-width: 440px;
-      opacity: 0;
-      animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) 0.45s forwards;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) 0.6s forwards;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.6rem 1.3rem;
-      background: var(--ink);
-      color: var(--bg);
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 0.5rem;
-      transition: opacity 0.2s;
-    }
-    .btn-primary:hover { opacity: 0.75; }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.6rem 1.3rem;
-      background: transparent;
-      color: var(--ink);
-      border: 1px solid rgba(26,24,20,0.2);
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 0.5rem;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      background: rgba(200,169,110,0.07);
-    }
-
-    /* ════════════════════
-       SECTIONS — common
-    ════════════════════ */
-    .section {
       padding: 4rem 0;
-      border-top: 1px solid var(--border);
     }
-
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      letter-spacing: 0.06em;
-      color: var(--ink);
+    .hero-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
       margin-bottom: 2rem;
     }
-    .section-title em { font-style: normal; color: var(--accent); }
-
-    /* ════════════════════
-       SKILLS — word grid
-    ════════════════════ */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.6rem;
-    }
-
-    .skill-tag {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.83rem;
-      font-weight: 400;
+    .headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 6.5rem);
+      line-height: 0.95;
+      letter-spacing: 0.03em;
       color: var(--ink);
-      padding: 0.55rem 0.9rem;
-      border: 1px solid var(--border);
-      border-radius: 0.4rem;
-      transition: border-color 0.2s, color 0.2s;
+      margin-bottom: 2.5rem;
     }
-    .skill-tag:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+    .headline em { font-style: normal; color: var(--accent); }
+    .hero-bio {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
     }
-
-    /* ════════════════════
-       PROJECTS
-    ════════════════════ */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-    }
-
-    .card {
-      border: 1px solid var(--border);
-      border-radius: 0.75rem;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+    .hero-cta { display: flex; gap: 2rem; align-items: center; }
+    .link-primary {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
       text-decoration: none;
-      color: inherit;
-      transition: border-color 0.2s, transform 0.2s;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
     }
-    .card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
+    .link-primary:hover { color: var(--accent); border-color: var(--accent); }
+    .link-secondary {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .link-secondary:hover { color: var(--ink); }
+
+    /* SECTIONS */
+    .section { padding: 4rem 0; }
+    .section-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
     }
 
-    .card-image {
-      aspect-ratio: 16 / 9;
-      background: rgba(26,24,20,0.05);
+    /* SKILLS */
+    .skills-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--ink);
     }
+    .skills-text span { transition: color 0.2s; }
+    .skills-text span:hover { color: var(--accent); }
 
-    .card-body {
-      padding: 1.25rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .card-header {
+    /* PROJECTS */
+    .projects-list { display: flex; flex-direction: column; }
+    .project-item {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      gap: 0.5rem;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(26,24,20,0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s;
     }
-    .card-title {
+    .project-item:last-child { border-bottom: 1px solid rgba(26,24,20,0.08); }
+    .project-item:hover { opacity: 0.55; }
+    .project-left { display: flex; flex-direction: column; gap: 0.4rem; }
+    .project-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.3rem;
-      letter-spacing: 0.05em;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
       color: var(--ink);
     }
-    .card-arrow {
-      font-size: 1rem;
-      color: var(--muted);
-      transition: color 0.2s, transform 0.2s;
-    }
-    .card:hover .card-arrow {
-      color: var(--accent);
-      transform: translate(2px, -2px);
-    }
-
-    .card-desc {
+    .project-desc {
       font-family: 'Barlow', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 300;
-      line-height: 1.65;
       color: var(--muted);
-      flex: 1;
     }
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-top: 0.4rem;
-    }
-    .tag {
+    .project-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+    .project-year {
       font-family: 'Barlow', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      padding: 0.18rem 0.55rem;
-      border-radius: 9999px;
-      background: rgba(200,169,110,0.12);
-      color: var(--accent);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
     }
+    .project-arrow { color: var(--muted); font-size: 0.9rem; }
 
-    /* ════════════════════
-       FOOTER
-    ════════════════════ */
+    /* FOOTER */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 0 2.5rem;
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(26,24,20,0.08);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
       gap: 1rem;
     }
-    .footer-copy {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-    }
+    .footer-copy { font-family: 'Barlow', sans-serif; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; }
     .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a {
       font-family: 'Barlow', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: var(--muted);
       text-decoration: none;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--accent); }
+    .footer-links a:hover { color: var(--ink); }
 
-    /* ════════════════════
-       ANIMATIONS
-    ════════════════════ */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ════════════════════
-       RESPONSIVE
-    ════════════════════ */
-    @media (max-width: 700px) {
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
       .page-wrapper { padding: 0 1.25rem; }
       .navbar-links { display: none; }
-      .hero { flex-direction: column; min-height: auto; padding: 2.5rem 0; gap: 1.75rem; }
-      .hero-photo { width: 100%; height: 200px; }
-      .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .projects-grid { grid-template-columns: 1fr; }
-      .contact-form { grid-template-columns: 1fr; }
-      .form-field.full { grid-column: auto; }
-      footer { flex-direction: column; align-items: flex-start; }
+      .hero { min-height: auto; padding: 3rem 0; }
     }
   </style>
 </head>
 <body>
-
   <div class="page-wrapper">
 
-    <!-- NAVBAR -->
     <header class="navbar">
       <a class="navbar-brand" href="#hero">D. Randazzo</a>
       <nav class="navbar-links">
-        <a href="#hero">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
       </nav>
-      <div class="navbar-icons">
-        <a class="icon-btn" href="mailto:your@email.com" title="Email">
-          <svg viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        </a>
-        <a class="icon-btn" href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" title="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a class="icon-btn" href="https://github.com/die-gooo" target="_blank" rel="noopener" title="GitHub">
-          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-        </a>
-      </div>
     </header>
 
     <main>
 
-      <!-- HERO -->
       <section class="hero" id="hero">
-        <div class="hero-line-top"></div>
-        <div class="hero-line-bottom"></div>
-        <div class="hero-corner tl"></div>
-        <div class="hero-corner tr"></div>
-        <div class="hero-corner bl"></div>
-        <div class="hero-corner br"></div>
-
-        <div class="hero-photo">
-          <span class="hero-photo-label">Photo</span>
-        </div>
-
-        <div class="hero-content">
-          <h1 class="headline">Your <em>Name</em>,<br>Professional Title</h1>
-          <p class="hero-bio">
-            A brief, compelling bio about your passion for creating innovative
-            and clean digital experiences. Replace this with your real story.
-          </p>
-          <div class="hero-cta">
-            <a class="btn-primary" href="#projects">View My Work</a>
-            <a class="btn-secondary" href="#contact">Get In Touch</a>
-          </div>
+        <div class="hero-label">Available for freelance — 2026</div>
+        <h1 class="headline">Your <em>Name</em>,<br>Professional Title</h1>
+        <p class="hero-bio">A brief, compelling bio about your passion for creating innovative and clean digital experiences. Replace this with your real story.</p>
+        <div class="hero-cta">
+          <a class="link-primary" href="#projects">View My Work</a>
+          <a class="link-secondary" href="mailto:your@email.com">Get In Touch →</a>
         </div>
       </section>
 
-      <!-- SKILLS -->
       <section class="section" id="skills">
-        <h2 class="section-title">Professional <em>Skills</em></h2>
-        <div class="skills-grid">
-          <span class="skill-tag">Skill One</span>
-          <span class="skill-tag">Skill Two</span>
-          <span class="skill-tag">Skill Three</span>
-          <span class="skill-tag">Skill Four</span>
-          <span class="skill-tag">Skill Five</span>
-          <span class="skill-tag">Skill Six</span>
-          <span class="skill-tag">Skill Seven</span>
-          <span class="skill-tag">Skill Eight</span>
-          <span class="skill-tag">Skill Nine</span>
-        </div>
+        <div class="section-label">Skills</div>
+        <p class="skills-text">
+          <span>Skill One</span>, <span>Skill Two</span>, <span>Skill Three</span>,
+          <span>Skill Four</span>, <span>Skill Five</span>, <span>Skill Six</span>,
+          <span>Skill Seven</span>, <span>Skill Eight</span>, <span>Skill Nine</span>.
+        </p>
       </section>
 
-      <!-- PROJECTS -->
       <section class="section" id="projects">
-        <h2 class="section-title">Side <em>Projects</em></h2>
-        <div class="projects-grid">
-
-          <a class="card" href="#" target="_blank" rel="noopener">
-            <div class="card-image"></div>
-            <div class="card-body">
-              <div class="card-header">
-                <div class="card-title">Project Alpha</div>
-                <span class="card-arrow">↗</span>
-              </div>
-              <p class="card-desc">Short description of what this project does and the problem it solves. Replace with real content.</p>
-              <div class="card-tags">
-                <span class="tag">Tag One</span>
-                <span class="tag">Tag Two</span>
-                <span class="tag">Tag Three</span>
-              </div>
+        <div class="section-label">Projects</div>
+        <div class="projects-list">
+          <a class="project-item" href="#" target="_blank" rel="noopener">
+            <div class="project-left">
+              <div class="project-title">Project Alpha</div>
+              <div class="project-desc">Short description of the project and the problem it solves.</div>
+            </div>
+            <div class="project-right">
+              <span class="project-year">2025</span>
+              <span class="project-arrow">↗</span>
             </div>
           </a>
-
-          <a class="card" href="#" target="_blank" rel="noopener">
-            <div class="card-image"></div>
-            <div class="card-body">
-              <div class="card-header">
-                <div class="card-title">Project Beta</div>
-                <span class="card-arrow">↗</span>
-              </div>
-              <p class="card-desc">Short description of what this project does and the problem it solves. Replace with real content.</p>
-              <div class="card-tags">
-                <span class="tag">Tag One</span>
-                <span class="tag">Tag Two</span>
-              </div>
+          <a class="project-item" href="#" target="_blank" rel="noopener">
+            <div class="project-left">
+              <div class="project-title">Project Beta</div>
+              <div class="project-desc">Short description of the project and the problem it solves.</div>
+            </div>
+            <div class="project-right">
+              <span class="project-year">2024</span>
+              <span class="project-arrow">↗</span>
             </div>
           </a>
-
         </div>
       </section>
-
 
     </main>
 
-    <!-- FOOTER -->
     <footer>
-      <span class="footer-copy">© 2026 Diego Randazzo. All rights reserved.</span>
+      <span class="footer-copy">© 2026 Diego Randazzo.</span>
       <div class="footer-links">
         <a href="mailto:your@email.com">Email</a>
         <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
@@ -544,10 +287,6 @@
 
   </div>
 
-  <script>
-    /* Skill bars animation removed — no longer needed */
-  </script>
   <script src="tracking.js" defer></script>
-
 </body>
 </html>
