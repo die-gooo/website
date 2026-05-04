@@ -22,282 +22,151 @@
       --muted:  #9e9890;
     }
 
-    body {
-      background-color: var(--bg);
-      color: var(--ink);
-      min-height: 100vh;
-      cursor: default;
-    }
+    body { background-color: var(--bg); color: var(--ink); min-height: 100vh; cursor: default; }
     a, button { cursor: pointer; }
 
-    .page-wrapper {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+    .page-wrapper { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
 
-    /* ── NAVBAR ── */
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 2.5rem 0;
-    }
+    /* NAVBAR */
+    .navbar { display: flex; align-items: center; justify-content: space-between; padding: 2.5rem 0; }
     .navbar-brand {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink);
-      text-decoration: none;
+      font-family: 'Barlow', sans-serif; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); text-decoration: none;
     }
     .navbar-links { display: flex; gap: 2rem; }
     .navbar-links a {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
+      font-family: 'Barlow', sans-serif; font-size: 0.72rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
     }
     .navbar-links a:hover { color: var(--ink); }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 85vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 4rem 0;
-    }
+    /* HERO */
+    .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; padding: 4rem 0; }
     .hero-label {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 2rem;
+      font-family: 'Barlow', sans-serif; font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem;
     }
     .headline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3.5rem, 9vw, 6.5rem);
-      line-height: 0.95;
-      letter-spacing: 0.03em;
-      color: var(--ink);
-      margin-bottom: 2.5rem;
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 9vw, 6.5rem);
+      line-height: 0.95; letter-spacing: 0.03em; color: var(--ink); margin-bottom: 2.5rem;
     }
     .headline em { font-style: normal; color: var(--accent); }
     .hero-bio {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 300;
-      line-height: 1.85;
-      color: var(--muted);
-      max-width: 480px;
-      margin-bottom: 2.5rem;
+      font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 300;
+      line-height: 1.85; color: var(--muted); max-width: 480px; margin-bottom: 2.5rem;
     }
     .hero-cta { display: flex; gap: 2rem; align-items: center; }
     .link-primary {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink);
-      text-decoration: none;
-      border-bottom: 1px solid var(--ink);
-      padding-bottom: 2px;
+      font-family: 'Barlow', sans-serif; font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink);
+      text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 2px;
       transition: color 0.2s, border-color 0.2s;
     }
     .link-primary:hover { color: var(--accent); border-color: var(--accent); }
     .link-secondary {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
+      font-family: 'Barlow', sans-serif; font-size: 0.75rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
     }
     .link-secondary:hover { color: var(--ink); }
 
-    /* ── SECTIONS ── */
+    /* SECTIONS */
     .section { padding: 4rem 0; }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 2rem;
-    }
+    .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2rem; }
     .section-label {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent);
+      font-family: 'Barlow', sans-serif; font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent);
     }
     .section-hint {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      opacity: 0.7;
-      transition: opacity 0.2s;
+      font-family: 'Barlow', sans-serif; font-size: 0.65rem; font-weight: 400;
+      letter-spacing: 0.08em; color: var(--muted); opacity: 0.7; transition: opacity 0.3s;
     }
 
-    /* ── SKILLS ── */
-    .skills-tags {
+    /* SKILLS LAYOUT */
+    .skills-layout {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 3rem;
+      align-items: center;
     }
+
+    /* RADAR CHART */
+    .radar-container { flex-shrink: 0; }
+    #radar-chart { display: block; overflow: visible; }
+
+    /* SKILL TAGS */
+    .skills-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; flex: 1; }
     .skill-tag {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-      padding: 0.4rem 0.9rem;
-      border: 1px solid rgba(26,24,20,0.12);
-      border-radius: 9999px;
-      cursor: pointer;
-      user-select: none;
+      font-family: 'Barlow', sans-serif; font-size: 0.72rem; font-weight: 400;
+      letter-spacing: 0.06em; color: var(--muted);
+      padding: 0.35rem 0.85rem;
+      border: 1px solid rgba(26,24,20,0.12); border-radius: 9999px;
+      cursor: pointer; user-select: none;
       transition: border-color 0.2s, color 0.2s, background 0.2s;
     }
-    .skill-tag:hover {
-      border-color: rgba(26,24,20,0.3);
-      color: var(--ink);
-    }
-    .skill-tag.active {
-      border-color: var(--accent);
-      background: rgba(200,169,110,0.1);
-      color: var(--accent);
-    }
+    .skill-tag:hover { border-color: rgba(26,24,20,0.3); color: var(--ink); }
+    .skill-tag.active { border-color: var(--accent); background: rgba(200,169,110,0.1); color: var(--accent); }
 
-    /* ── PROJECTS ── */
+    /* PROJECTS */
     .projects-list { display: flex; flex-direction: column; }
-
     .project-item {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 2rem;
-      padding: 1.5rem 0;
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 2rem; padding: 1.5rem 0;
       border-top: 1px solid rgba(26,24,20,0.08);
-      text-decoration: none;
-      color: inherit;
+      text-decoration: none; color: inherit;
       transition: opacity 0.3s ease, border-color 0.3s ease, padding-left 0.3s ease;
       position: relative;
     }
     .project-item:last-child { border-bottom: 1px solid rgba(26,24,20,0.08); }
     .project-item:hover { opacity: 0.55; }
-
-    .project-item.dimmed {
-      opacity: 0.12;
-      pointer-events: none;
-    }
+    .project-item.dimmed { opacity: 0.1; pointer-events: none; }
     .project-item.highlighted {
-      opacity: 1 !important;
-      border-top-color: var(--accent);
-      padding-left: 0.75rem;
+      opacity: 1 !important; border-top-color: var(--accent); padding-left: 0.75rem;
     }
-    .project-item.highlighted:last-child {
-      border-bottom-color: var(--accent);
-    }
-
+    .project-item.highlighted:last-child { border-bottom-color: var(--accent); }
     .project-left { display: flex; flex-direction: column; gap: 0.4rem; }
-    .project-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.04em;
-      color: var(--ink);
-    }
-    .project-desc {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 300;
-      color: var(--muted);
-    }
-    .project-skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-top: 0.3rem;
-    }
+    .project-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.04em; color: var(--ink); }
+    .project-desc { font-family: 'Barlow', sans-serif; font-size: 0.8rem; font-weight: 300; color: var(--muted); }
+    .project-skill-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.3rem; }
     .project-skill-tag {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-      opacity: 0;
-      transform: translateY(4px);
+      font-family: 'Barlow', sans-serif; font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.05em; color: var(--muted);
+      opacity: 0; transform: translateY(4px);
       transition: opacity 0.25s ease, transform 0.25s ease, color 0.2s;
     }
-    .project-item.highlighted .project-skill-tag {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .project-item.highlighted .project-skill-tag { opacity: 1; transform: translateY(0); }
     .project-skill-tag.matched { color: var(--accent); }
-
     .project-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
-    .project-year {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
+    .project-year { font-family: 'Barlow', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); }
     .project-arrow { color: var(--muted); font-size: 0.9rem; }
 
-    /* filter status */
     .filter-status {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      min-height: 1rem;
-      transition: opacity 0.2s;
-      opacity: 0;
+      font-family: 'Barlow', sans-serif; font-size: 0.65rem; font-weight: 400;
+      letter-spacing: 0.08em; color: var(--accent);
+      margin-bottom: 1rem; min-height: 1rem; opacity: 0; transition: opacity 0.2s;
     }
     .filter-status.visible { opacity: 1; }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
-      padding: 2.5rem 0;
-      border-top: 1px solid rgba(26,24,20,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
+      padding: 2.5rem 0; border-top: 1px solid rgba(26,24,20,0.08);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
     }
     .footer-copy { font-family: 'Barlow', sans-serif; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; }
     .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.68rem;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+      font-family: 'Barlow', sans-serif; font-size: 0.68rem; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s;
     }
     .footer-links a:hover { color: var(--ink); }
 
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 600px) {
       .page-wrapper { padding: 0 1.25rem; }
       .navbar-links { display: none; }
       .hero { min-height: auto; padding: 3rem 0; }
+      .skills-layout { flex-direction: column; gap: 2rem; }
+      .radar-container { margin: 0 auto; }
     }
   </style>
 </head>
@@ -331,16 +200,11 @@
           <span class="section-label">Skills</span>
           <span class="section-hint" id="skills-hint">select to filter projects</span>
         </div>
-        <div class="skills-tags" id="skills-tags">
-          <span class="skill-tag" data-skill="frontend">Frontend</span>
-          <span class="skill-tag" data-skill="backend">Backend</span>
-          <span class="skill-tag" data-skill="design">Design</span>
-          <span class="skill-tag" data-skill="mobile">Mobile</span>
-          <span class="skill-tag" data-skill="devops">DevOps</span>
-          <span class="skill-tag" data-skill="database">Database</span>
-          <span class="skill-tag" data-skill="api">API</span>
-          <span class="skill-tag" data-skill="testing">Testing</span>
-          <span class="skill-tag" data-skill="cloud">Cloud</span>
+        <div class="skills-layout">
+          <div class="radar-container">
+            <svg id="radar-chart" viewBox="0 0 280 280" width="260" height="260"></svg>
+          </div>
+          <div class="skills-tags" id="skills-tags"></div>
         </div>
       </section>
 
@@ -352,8 +216,7 @@
         <div class="filter-status" id="filter-status"></div>
         <div class="projects-list" id="projects-list">
 
-          <a class="project-item" href="#" target="_blank" rel="noopener"
-             data-skills="frontend,design,api">
+          <a class="project-item" href="#" target="_blank" rel="noopener" data-skills="frontend,design,api">
             <div class="project-left">
               <div class="project-title">Project Alpha</div>
               <div class="project-desc">Short description of the project and the problem it solves.</div>
@@ -369,8 +232,7 @@
             </div>
           </a>
 
-          <a class="project-item" href="#" target="_blank" rel="noopener"
-             data-skills="backend,database,devops">
+          <a class="project-item" href="#" target="_blank" rel="noopener" data-skills="backend,database,devops">
             <div class="project-left">
               <div class="project-title">Project Beta</div>
               <div class="project-desc">Short description of the project and the problem it solves.</div>
@@ -386,8 +248,7 @@
             </div>
           </a>
 
-          <a class="project-item" href="#" target="_blank" rel="noopener"
-             data-skills="frontend,mobile,api,testing">
+          <a class="project-item" href="#" target="_blank" rel="noopener" data-skills="frontend,mobile,api,testing">
             <div class="project-left">
               <div class="project-title">Project Gamma</div>
               <div class="project-desc">Short description of the project and the problem it solves.</div>
@@ -421,61 +282,217 @@
   </div>
 
   <script>
-    (function () {
-      var activeSkill = null;
-      var tags     = document.querySelectorAll('.skill-tag');
-      var projects = document.querySelectorAll('.project-item');
-      var status   = document.getElementById('filter-status');
-      var hint     = document.getElementById('skills-hint');
+  (function () {
+    /* ── Data ── */
+    var SKILLS = [
+      { name: 'Frontend', slug: 'frontend', level: 90 },
+      { name: 'API',      slug: 'api',      level: 85 },
+      { name: 'Database', slug: 'database', level: 80 },
+      { name: 'Backend',  slug: 'backend',  level: 75 },
+      { name: 'Design',   slug: 'design',   level: 70 },
+      { name: 'Mobile',   slug: 'mobile',   level: 65 },
+      { name: 'Cloud',    slug: 'cloud',    level: 62 },
+      { name: 'DevOps',   slug: 'devops',   level: 58 },
+      { name: 'Testing',  slug: 'testing',  level: 55 },
+    ];
 
-      tags.forEach(function (tag) {
-        tag.addEventListener('click', function () {
-          var skill = tag.dataset.skill;
+    var C       = { ink: '#1a1814', accent: '#c8a96e', muted: '#9e9890', bg: '#f7f5f2' };
+    var NS      = 'http://www.w3.org/2000/svg';
+    var SIZE    = 280;
+    var CX = SIZE / 2, CY = SIZE / 2;
+    var MAX_R   = 96;
+    var LABEL_R = MAX_R + 26;
+    var N       = SKILLS.length;
 
-          /* deselect if same skill clicked again */
-          if (activeSkill === skill) {
-            reset();
-            return;
-          }
+    /* ── SVG helpers ── */
+    function el(tag, attrs) {
+      var e = document.createElementNS(NS, tag);
+      Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+      return e;
+    }
+    function angle(i) { return (Math.PI * 2 * i / N) - Math.PI / 2; }
+    function pt(i, pct) {
+      var r = MAX_R * pct / 100, a = angle(i);
+      return [CX + r * Math.cos(a), CY + r * Math.sin(a)];
+    }
+    function polyPts(pct) {
+      return SKILLS.map(function (s, i) { return pt(i, pct).join(','); }).join(' ');
+    }
+    function dataPts() {
+      return SKILLS.map(function (s, i) { return pt(i, s.level).join(','); }).join(' ');
+    }
 
-          /* activate */
-          activeSkill = skill;
-          tags.forEach(function (t) { t.classList.remove('active'); });
-          tag.classList.add('active');
+    /* ── Build chart ── */
+    var svg = document.getElementById('radar-chart');
 
-          var matched = 0;
-          projects.forEach(function (p) {
-            var pSkills = p.dataset.skills.split(',');
-            var isMatch = pSkills.indexOf(skill) !== -1;
-            p.classList.toggle('highlighted', isMatch);
-            p.classList.toggle('dimmed', !isMatch);
-            if (isMatch) matched++;
+    /* grid rings */
+    [25, 50, 75, 100].forEach(function (p) {
+      svg.appendChild(el('polygon', {
+        points: polyPts(p), fill: 'none',
+        stroke: p === 100 ? 'rgba(26,24,20,0.12)' : 'rgba(26,24,20,0.06)',
+        'stroke-width': '1'
+      }));
+    });
 
-            /* highlight matching skill tags inside each project */
-            p.querySelectorAll('.project-skill-tag').forEach(function (st) {
-              st.classList.toggle('matched', st.dataset.skill === skill);
-            });
-          });
+    /* axis lines */
+    SKILLS.forEach(function (s, i) {
+      var p = pt(i, 100);
+      svg.appendChild(el('line', {
+        x1: CX, y1: CY, x2: p[0], y2: p[1],
+        stroke: 'rgba(26,24,20,0.1)', 'stroke-width': '1',
+        id: 'axis-' + s.slug,
+        style: 'transition: stroke 0.3s, stroke-width 0.3s'
+      }));
+    });
 
-          status.textContent = matched + ' of ' + projects.length + ' projects use ' + tag.textContent + ' — click to reset';
-          status.classList.add('visible');
-          if (hint) hint.style.opacity = '0';
+    /* data polygon */
+    var polygon = el('polygon', {
+      points: dataPts(),
+      fill: 'rgba(200,169,110,0.12)',
+      stroke: C.accent, 'stroke-width': '1.5',
+      id: 'radar-polygon'
+    });
+    svg.appendChild(polygon);
+
+    /* dots + hit areas */
+    SKILLS.forEach(function (s, i) {
+      var p = pt(i, s.level);
+      svg.appendChild(el('circle', {
+        cx: p[0], cy: p[1], r: '3',
+        fill: C.accent,
+        id: 'dot-' + s.slug,
+        style: 'transition: r 0.25s, fill 0.25s'
+      }));
+      /* invisible hit area for click */
+      var hit = el('circle', {
+        cx: p[0], cy: p[1], r: '14',
+        fill: 'transparent', style: 'cursor:pointer'
+      });
+      hit.dataset.skill = s.slug;
+      svg.appendChild(hit);
+    });
+
+    /* labels */
+    SKILLS.forEach(function (s, i) {
+      var a  = angle(i);
+      var lx = CX + LABEL_R * Math.cos(a);
+      var ly = CY + LABEL_R * Math.sin(a);
+      /* text-anchor based on horizontal position */
+      var anchor = Math.abs(lx - CX) < 12 ? 'middle' : lx > CX ? 'start' : 'end';
+      var txt = el('text', {
+        x: lx, y: ly,
+        'text-anchor': anchor,
+        'dominant-baseline': 'middle',
+        'font-family': 'Barlow, sans-serif',
+        'font-size': '8.5',
+        'letter-spacing': '0.07em',
+        fill: C.muted,
+        id: 'label-' + s.slug,
+        style: 'cursor:pointer; user-select:none; transition: fill 0.25s, font-weight 0.25s; text-transform:uppercase'
+      });
+      txt.textContent = s.name;
+      txt.dataset.skill = s.slug;
+      svg.appendChild(txt);
+    });
+
+    /* ── Build tag pills from same data ── */
+    var tagsEl = document.getElementById('skills-tags');
+    SKILLS.forEach(function (s) {
+      var span = document.createElement('span');
+      span.className = 'skill-tag';
+      span.dataset.skill = s.slug;
+      span.textContent = s.name;
+      tagsEl.appendChild(span);
+    });
+
+    /* ── Filter state ── */
+    var active   = null;
+    var projects = document.querySelectorAll('.project-item');
+    var status   = document.getElementById('filter-status');
+    var hint     = document.getElementById('skills-hint');
+
+    function activate(slug) {
+      /* toggle off */
+      if (active === slug) { reset(); return; }
+      active = slug;
+
+      /* tags */
+      document.querySelectorAll('.skill-tag').forEach(function (t) {
+        t.classList.toggle('active', t.dataset.skill === slug);
+      });
+
+      /* radar */
+      SKILLS.forEach(function (s) {
+        var dot   = document.getElementById('dot-' + s.slug);
+        var label = document.getElementById('label-' + s.slug);
+        var axis  = document.getElementById('axis-' + s.slug);
+        var isActive = s.slug === slug;
+        if (dot)   { dot.setAttribute('r',    isActive ? '5' : '3'); }
+        if (label) { label.setAttribute('fill', isActive ? C.ink : C.muted); }
+        if (axis)  {
+          axis.setAttribute('stroke',       isActive ? C.accent : 'rgba(26,24,20,0.1)');
+          axis.setAttribute('stroke-width', isActive ? '1.5'    : '1');
+        }
+      });
+
+      /* projects */
+      var matched = 0;
+      projects.forEach(function (p) {
+        var isMatch = p.dataset.skills.split(',').indexOf(slug) !== -1;
+        p.classList.toggle('highlighted', isMatch);
+        p.classList.toggle('dimmed',      !isMatch);
+        if (isMatch) matched++;
+        p.querySelectorAll('.project-skill-tag').forEach(function (st) {
+          st.classList.toggle('matched', st.dataset.skill === slug);
         });
       });
 
-      function reset() {
-        activeSkill = null;
-        tags.forEach(function (t) { t.classList.remove('active'); });
-        projects.forEach(function (p) {
-          p.classList.remove('highlighted', 'dimmed');
-          p.querySelectorAll('.project-skill-tag').forEach(function (st) {
-            st.classList.remove('matched');
-          });
-        });
-        status.classList.remove('visible');
-        if (hint) hint.style.opacity = '';
-      }
-    }());
+      var label = document.querySelector('[data-skill="' + slug + '"].skill-tag');
+      status.textContent = matched + ' of ' + projects.length + ' projects — click again to reset';
+      status.classList.add('visible');
+      if (hint) hint.style.opacity = '0';
+    }
+
+    function reset() {
+      active = null;
+      document.querySelectorAll('.skill-tag').forEach(function (t) { t.classList.remove('active'); });
+      SKILLS.forEach(function (s) {
+        var dot   = document.getElementById('dot-' + s.slug);
+        var label = document.getElementById('label-' + s.slug);
+        var axis  = document.getElementById('axis-' + s.slug);
+        if (dot)   dot.setAttribute('r', '3');
+        if (label) label.setAttribute('fill', C.muted);
+        if (axis)  { axis.setAttribute('stroke', 'rgba(26,24,20,0.1)'); axis.setAttribute('stroke-width', '1'); }
+      });
+      projects.forEach(function (p) {
+        p.classList.remove('highlighted', 'dimmed');
+        p.querySelectorAll('.project-skill-tag').forEach(function (st) { st.classList.remove('matched'); });
+      });
+      status.classList.remove('visible');
+      if (hint) hint.style.opacity = '';
+    }
+
+    /* ── Event listeners ── */
+    /* tag pills */
+    document.getElementById('skills-tags').addEventListener('click', function (e) {
+      var tag = e.target.closest('.skill-tag');
+      if (tag) activate(tag.dataset.skill);
+    });
+
+    /* radar hit areas + labels */
+    svg.addEventListener('click', function (e) {
+      var slug = e.target.dataset.skill;
+      if (slug) activate(slug);
+    });
+
+    /* ── Animate polygon on load ── */
+    polygon.style.opacity = '0';
+    polygon.style.transition = 'opacity 0.8s ease';
+    requestAnimationFrame(function () {
+      setTimeout(function () { polygon.style.opacity = '1'; }, 100);
+    });
+
+  }());
   </script>
   <script src="tracking.js" defer></script>
 
