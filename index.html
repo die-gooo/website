@@ -31,10 +31,7 @@
       background-color: var(--bg);
       color: var(--ink);
       min-height: 100vh;
-      cursor: none;
     }
-
-    a, button, input, textarea, select { cursor: none; }
 
     /* ── Noise texture overlay ── */
     body::before {
@@ -46,23 +43,6 @@
       pointer-events: none;
       z-index: 1;
       opacity: 0.4;
-    }
-
-    /* ── Custom cursor ── */
-    .cursor {
-      position: fixed;
-      width: 6px; height: 6px;
-      background: var(--ink);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
-    }
-    .cursor.hover {
-      width: 32px; height: 32px;
-      background: transparent;
-      border: 1px solid var(--accent);
     }
 
     /* ── Page wrapper ── */
@@ -609,8 +589,6 @@
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
-
   <div class="page-wrapper">
 
     <!-- ── NAVBAR ── -->
@@ -859,26 +837,12 @@
   </div><!-- /page-wrapper -->
 
   <script>
-    /* ── Custom cursor ── */
-    const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top  = e.clientY + 'px';
-    });
-    const hoverEls = document.querySelectorAll('a, button, input, textarea, .card, .hobby-card, .icon-btn');
-    hoverEls.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-
     /* ── Skill bars — animate on scroll ── */
     const fills = document.querySelectorAll('.skill-fill');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          fills.forEach(fill => {
-            fill.style.width = fill.dataset.width + '%';
-          });
+          fills.forEach(fill => { fill.style.width = fill.dataset.width + '%'; });
           observer.disconnect();
         }
       });
@@ -886,6 +850,7 @@
     const skillsSection = document.getElementById('skills');
     if (skillsSection) observer.observe(skillsSection);
   </script>
+  <script src="tracking.js" defer></script>
 
 </body>
 </html>
