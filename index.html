@@ -3,7 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diego Randazzo</title>
+  <title>Diego Randazzo — Freelance Full-Stack Developer</title>
+
+  <!-- SEO core -->
+  <meta name="description" content="Freelance full-stack developer specialising in web applications, API design and data-driven interfaces. Based in Italy, open to remote projects worldwide." />
+  <meta name="author" content="Diego Randazzo" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.diegorandazzo.ooo" />
+
+  <!-- Hreflang (EN primary, IT alternate — same URL, client-side switch) -->
+  <link rel="alternate" hreflang="en" href="https://www.diegorandazzo.ooo" />
+  <link rel="alternate" hreflang="it" href="https://www.diegorandazzo.ooo" />
+  <link rel="alternate" hreflang="x-default" href="https://www.diegorandazzo.ooo" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.diegorandazzo.ooo" />
+  <meta property="og:title" content="Diego Randazzo — Freelance Full-Stack Developer" />
+  <meta property="og:description" content="Freelance full-stack developer specialising in web applications, API design and data-driven interfaces. Based in Italy, open to remote projects worldwide." />
+  <meta property="og:site_name" content="Diego Randazzo" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="it_IT" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Diego Randazzo — Freelance Full-Stack Developer" />
+  <meta name="twitter:description" content="Freelance full-stack developer specialising in web applications, API design and data-driven interfaces." />
+
+  <!-- Structured data — Person + WebSite (GEO: AI search entity signals) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.diegorandazzo.ooo/#person",
+        "name": "Diego Randazzo",
+        "url": "https://www.diegorandazzo.ooo",
+        "jobTitle": "Freelance Full-Stack Developer",
+        "description": "Freelance full-stack developer specialising in web applications, API design and data-driven interfaces. Based in Italy, open to remote projects worldwide.",
+        "knowsAbout": [
+          "Frontend Development",
+          "Backend Development",
+          "REST API Design",
+          "Database Architecture",
+          "UI/UX Design",
+          "Mobile Development",
+          "Cloud Infrastructure",
+          "DevOps",
+          "Software Testing"
+        ],
+        "nationality": { "@type": "Country", "name": "Italy" },
+        "sameAs": [
+          "https://linkedin.com/in/yourprofile",
+          "https://github.com/die-gooo"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.diegorandazzo.ooo/#website",
+        "url": "https://www.diegorandazzo.ooo",
+        "name": "Diego Randazzo",
+        "description": "Portfolio and professional profile of Diego Randazzo, freelance full-stack developer based in Italy.",
+        "author": { "@id": "https://www.diegorandazzo.ooo/#person" },
+        "inLanguage": ["en", "it"]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.diegorandazzo.ooo/#webpage",
+        "url": "https://www.diegorandazzo.ooo",
+        "name": "Diego Randazzo — Freelance Full-Stack Developer",
+        "isPartOf": { "@id": "https://www.diegorandazzo.ooo/#website" },
+        "about": { "@id": "https://www.diegorandazzo.ooo/#person" },
+        "description": "Portfolio of Diego Randazzo: skills in frontend, backend, API design and DevOps. Available for freelance projects worldwide.",
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8PQN90VD28"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -189,6 +267,16 @@
     }
     .footer-links a:hover { color: var(--ink); }
 
+    /* LANG TOGGLE */
+    .lang-toggle {
+      font-family: 'Barlow', sans-serif; font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); background: none;
+      border: 1px solid rgba(17,17,17,0.14); border-radius: 4px;
+      padding: 0.22rem 0.6rem; transition: color 0.2s, border-color 0.2s;
+    }
+    .lang-toggle:hover { color: var(--ink); border-color: rgba(17,17,17,0.35); }
+
     /* RESPONSIVE */
     @media (max-width: 600px) {
       .page-wrapper { padding: 0 1.25rem; }
@@ -205,31 +293,32 @@
     <header class="navbar">
       <a class="navbar-brand" href="#hero">D. Randazzo</a>
       <nav class="navbar-links">
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
+        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
       </nav>
+      <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">EN</button>
     </header>
 
     <main>
 
       <!-- HERO -->
       <section class="hero" id="hero">
-        <div class="hero-label">Available for freelance — 2026</div>
+        <div class="hero-label" data-i18n="hero.label">Available for freelance — 2026</div>
         <div class="headline-wrap">
           <h1 class="headline"><span class="slot" id="slot-name">diegorandazzo</span><span class="slot slot-tld" id="slot-tld">.ooo</span></h1>
         </div>
-        <p class="hero-bio">A brief, compelling bio about your passion for creating innovative and clean digital experiences. Replace this with your real story.</p>
+        <p class="hero-bio" data-i18n="hero.bio">Freelance full-stack developer specialising in web applications, API design and data-driven interfaces. Based in Italy, open to remote projects worldwide.</p>
         <div class="hero-cta">
-          <a class="link-primary" href="#projects">View My Work</a>
-          <a class="link-secondary" href="mailto:your@email.com">Get In Touch →</a>
+          <a class="link-primary" href="#projects" data-i18n="hero.cta.primary">View My Work</a>
+          <a class="link-secondary" href="mailto:your@email.com" data-i18n="hero.cta.secondary">Get In Touch →</a>
         </div>
       </section>
 
       <!-- SKILLS -->
       <section class="section" id="skills">
         <div class="section-header">
-          <span class="section-label">Skills</span>
-          <span class="section-hint" id="skills-hint">select to filter projects</span>
+          <span class="section-label" data-i18n="skills.label">Skills</span>
+          <span class="section-hint" id="skills-hint" data-i18n="skills.hint">select to filter projects</span>
         </div>
         <div class="skills-layout">
           <div class="radar-container">
@@ -242,15 +331,15 @@
       <!-- PROJECTS -->
       <section class="section" id="projects">
         <div class="section-header">
-          <span class="section-label">Projects</span>
+          <span class="section-label" data-i18n="projects.label">Projects</span>
         </div>
         <div class="filter-status" id="filter-status"></div>
         <div class="projects-list" id="projects-list">
 
           <a class="project-item" href="#" target="_blank" rel="noopener" data-skills="frontend,design,api">
             <div class="project-left">
-              <div class="project-title">Project Alpha</div>
-              <div class="project-desc">Short description of the project and the problem it solves.</div>
+              <div class="project-title" data-i18n="project.alpha.title">Project Alpha</div>
+              <div class="project-desc" data-i18n="project.alpha.desc">Short description of the project and the problem it solves.</div>
               <div class="project-skill-tags">
                 <span class="project-skill-tag" data-skill="frontend">Frontend</span>
                 <span class="project-skill-tag" data-skill="design">Design</span>
@@ -265,8 +354,8 @@
 
           <a class="project-item" href="#" target="_blank" rel="noopener" data-skills="backend,database,devops">
             <div class="project-left">
-              <div class="project-title">Project Beta</div>
-              <div class="project-desc">Short description of the project and the problem it solves.</div>
+              <div class="project-title" data-i18n="project.beta.title">Project Beta</div>
+              <div class="project-desc" data-i18n="project.beta.desc">Short description of the project and the problem it solves.</div>
               <div class="project-skill-tags">
                 <span class="project-skill-tag" data-skill="backend">Backend</span>
                 <span class="project-skill-tag" data-skill="database">Database</span>
@@ -281,8 +370,8 @@
 
           <a class="project-item" href="#" target="_blank" rel="noopener" data-skills="frontend,mobile,api,testing">
             <div class="project-left">
-              <div class="project-title">Project Gamma</div>
-              <div class="project-desc">Short description of the project and the problem it solves.</div>
+              <div class="project-title" data-i18n="project.gamma.title">Project Gamma</div>
+              <div class="project-desc" data-i18n="project.gamma.desc">Short description of the project and the problem it solves.</div>
               <div class="project-skill-tags">
                 <span class="project-skill-tag" data-skill="frontend">Frontend</span>
                 <span class="project-skill-tag" data-skill="mobile">Mobile</span>
@@ -302,7 +391,7 @@
     </main>
 
     <footer>
-      <span class="footer-copy">© 2026 Diego Randazzo.</span>
+      <span class="footer-copy" data-i18n="footer.copy">© 2026 Diego Randazzo.</span>
       <div class="footer-links">
         <a href="mailto:your@email.com">Email</a>
         <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
@@ -478,8 +567,8 @@
         });
       });
 
-      var label = document.querySelector('[data-skill="' + slug + '"].skill-tag');
-      status.textContent = matched + ' of ' + projects.length + ' projects — click again to reset';
+      var tmpl = window._i18nFilterStatus || '{n} of {total} projects — click again to reset';
+      status.textContent = tmpl.replace('{n}', matched).replace('{total}', projects.length);
       status.classList.add('visible');
       if (hint) hint.style.opacity = '0';
     }
@@ -607,6 +696,73 @@
     /* stagger start so they don't fire together */
     setTimeout(scheduleName, 3000);
     setTimeout(scheduleTld,  6000);
+  }());
+  </script>
+  <script>
+  (function () {
+    var T = {
+      en: {
+        'nav.skills':          'Skills',
+        'nav.projects':        'Projects',
+        'hero.label':          'Available for freelance — 2026',
+        'hero.bio':            'Freelance full-stack developer specialising in web applications, API design and data-driven interfaces. Based in Italy, open to remote projects worldwide.',
+        'hero.cta.primary':    'View My Work',
+        'hero.cta.secondary':  'Get In Touch →',
+        'skills.label':        'Skills',
+        'skills.hint':         'select to filter projects',
+        'projects.label':      'Projects',
+        'filter.status':       '{n} of {total} projects — click again to reset',
+        'project.alpha.title': 'Project Alpha',
+        'project.alpha.desc':  'Short description of the project and the problem it solves.',
+        'project.beta.title':  'Project Beta',
+        'project.beta.desc':   'Short description of the project and the problem it solves.',
+        'project.gamma.title': 'Project Gamma',
+        'project.gamma.desc':  'Short description of the project and the problem it solves.',
+        'footer.copy':         '© 2026 Diego Randazzo.',
+      },
+      it: {
+        'nav.skills':          'Competenze',
+        'nav.projects':        'Progetti',
+        'hero.label':          'Disponibile per freelance — 2026',
+        'hero.bio':            'Sviluppatore full-stack freelance specializzato in applicazioni web, progettazione di API e interfacce data-driven. Basato in Italia, aperto a progetti da remoto in tutto il mondo.',
+        'hero.cta.primary':    'Vedi i miei lavori',
+        'hero.cta.secondary':  'Scrivimi →',
+        'skills.label':        'Competenze',
+        'skills.hint':         'seleziona per filtrare i progetti',
+        'projects.label':      'Progetti',
+        'filter.status':       '{n} di {total} progetti — clicca di nuovo per azzerare',
+        'project.alpha.title': 'Progetto Alpha',
+        'project.alpha.desc':  'Breve descrizione del progetto e del problema che risolve.',
+        'project.beta.title':  'Progetto Beta',
+        'project.beta.desc':   'Breve descrizione del progetto e del problema che risolve.',
+        'project.gamma.title': 'Progetto Gamma',
+        'project.gamma.desc':  'Breve descrizione del progetto e del problema che risolve.',
+        'footer.copy':         '© 2026 Diego Randazzo.',
+      }
+    };
+
+    var btn  = document.getElementById('lang-toggle');
+    var lang = localStorage.getItem('lang') || 'en';
+
+    function apply(l) {
+      lang = l;
+      document.documentElement.lang = l;
+      localStorage.setItem('lang', l);
+      if (btn) btn.textContent = l === 'en' ? 'IT' : 'EN';
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var v = T[l][el.dataset.i18n];
+        if (v !== undefined) el.textContent = v;
+      });
+      window._i18nFilterStatus = T[l]['filter.status'];
+    }
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        apply(lang === 'en' ? 'it' : 'en');
+      });
+    }
+
+    apply(lang);
   }());
   </script>
   <script src="tracking.js" defer></script>
