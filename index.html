@@ -36,7 +36,7 @@
       padding: 0 2rem;
     }
 
-    /* NAVBAR */
+    /* ── NAVBAR ── */
     .navbar {
       display: flex;
       align-items: center;
@@ -65,7 +65,7 @@
     }
     .navbar-links a:hover { color: var(--ink); }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero {
       min-height: 85vh;
       display: flex;
@@ -126,8 +126,15 @@
     }
     .link-secondary:hover { color: var(--ink); }
 
-    /* SECTIONS */
+    /* ── SECTIONS ── */
     .section { padding: 4rem 0; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
     .section-label {
       font-family: 'Barlow', sans-serif;
       font-size: 0.65rem;
@@ -135,22 +142,49 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 2rem;
+    }
+    .section-hint {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      opacity: 0.7;
+      transition: opacity 0.2s;
     }
 
-    /* SKILLS */
-    .skills-text {
+    /* ── SKILLS ── */
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tag {
       font-family: 'Barlow', sans-serif;
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 2;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      padding: 0.4rem 0.9rem;
+      border: 1px solid rgba(26,24,20,0.12);
+      border-radius: 9999px;
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .skill-tag:hover {
+      border-color: rgba(26,24,20,0.3);
       color: var(--ink);
     }
-    .skills-text span { transition: color 0.2s; }
-    .skills-text span:hover { color: var(--accent); }
+    .skill-tag.active {
+      border-color: var(--accent);
+      background: rgba(200,169,110,0.1);
+      color: var(--accent);
+    }
 
-    /* PROJECTS */
+    /* ── PROJECTS ── */
     .projects-list { display: flex; flex-direction: column; }
+
     .project-item {
       display: flex;
       align-items: baseline;
@@ -160,10 +194,25 @@
       border-top: 1px solid rgba(26,24,20,0.08);
       text-decoration: none;
       color: inherit;
-      transition: opacity 0.2s;
+      transition: opacity 0.3s ease, border-color 0.3s ease, padding-left 0.3s ease;
+      position: relative;
     }
     .project-item:last-child { border-bottom: 1px solid rgba(26,24,20,0.08); }
     .project-item:hover { opacity: 0.55; }
+
+    .project-item.dimmed {
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .project-item.highlighted {
+      opacity: 1 !important;
+      border-top-color: var(--accent);
+      padding-left: 0.75rem;
+    }
+    .project-item.highlighted:last-child {
+      border-bottom-color: var(--accent);
+    }
+
     .project-left { display: flex; flex-direction: column; gap: 0.4rem; }
     .project-title {
       font-family: 'Bebas Neue', sans-serif;
@@ -177,6 +226,28 @@
       font-weight: 300;
       color: var(--muted);
     }
+    .project-skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.3rem;
+    }
+    .project-skill-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.25s ease, transform 0.25s ease, color 0.2s;
+    }
+    .project-item.highlighted .project-skill-tag {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .project-skill-tag.matched { color: var(--accent); }
+
     .project-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
     .project-year {
       font-family: 'Barlow', sans-serif;
@@ -186,7 +257,21 @@
     }
     .project-arrow { color: var(--muted); font-size: 0.9rem; }
 
-    /* FOOTER */
+    /* filter status */
+    .filter-status {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      min-height: 1rem;
+      transition: opacity 0.2s;
+      opacity: 0;
+    }
+    .filter-status.visible { opacity: 1; }
+
+    /* ── FOOTER ── */
     footer {
       padding: 2.5rem 0;
       border-top: 1px solid rgba(26,24,20,0.08);
@@ -208,7 +293,7 @@
     }
     .footer-links a:hover { color: var(--ink); }
 
-    /* RESPONSIVE */
+    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .page-wrapper { padding: 0 1.25rem; }
       .navbar-links { display: none; }
@@ -229,6 +314,7 @@
 
     <main>
 
+      <!-- HERO -->
       <section class="hero" id="hero">
         <div class="hero-label">Available for freelance — 2026</div>
         <h1 class="headline">Your <em>Name</em>,<br>Professional Title</h1>
@@ -239,38 +325,85 @@
         </div>
       </section>
 
+      <!-- SKILLS -->
       <section class="section" id="skills">
-        <div class="section-label">Skills</div>
-        <p class="skills-text">
-          <span>Skill One</span>, <span>Skill Two</span>, <span>Skill Three</span>,
-          <span>Skill Four</span>, <span>Skill Five</span>, <span>Skill Six</span>,
-          <span>Skill Seven</span>, <span>Skill Eight</span>, <span>Skill Nine</span>.
-        </p>
+        <div class="section-header">
+          <span class="section-label">Skills</span>
+          <span class="section-hint" id="skills-hint">select to filter projects</span>
+        </div>
+        <div class="skills-tags" id="skills-tags">
+          <span class="skill-tag" data-skill="frontend">Frontend</span>
+          <span class="skill-tag" data-skill="backend">Backend</span>
+          <span class="skill-tag" data-skill="design">Design</span>
+          <span class="skill-tag" data-skill="mobile">Mobile</span>
+          <span class="skill-tag" data-skill="devops">DevOps</span>
+          <span class="skill-tag" data-skill="database">Database</span>
+          <span class="skill-tag" data-skill="api">API</span>
+          <span class="skill-tag" data-skill="testing">Testing</span>
+          <span class="skill-tag" data-skill="cloud">Cloud</span>
+        </div>
       </section>
 
+      <!-- PROJECTS -->
       <section class="section" id="projects">
-        <div class="section-label">Projects</div>
-        <div class="projects-list">
-          <a class="project-item" href="#" target="_blank" rel="noopener">
+        <div class="section-header">
+          <span class="section-label">Projects</span>
+        </div>
+        <div class="filter-status" id="filter-status"></div>
+        <div class="projects-list" id="projects-list">
+
+          <a class="project-item" href="#" target="_blank" rel="noopener"
+             data-skills="frontend,design,api">
             <div class="project-left">
               <div class="project-title">Project Alpha</div>
               <div class="project-desc">Short description of the project and the problem it solves.</div>
+              <div class="project-skill-tags">
+                <span class="project-skill-tag" data-skill="frontend">Frontend</span>
+                <span class="project-skill-tag" data-skill="design">Design</span>
+                <span class="project-skill-tag" data-skill="api">API</span>
+              </div>
             </div>
             <div class="project-right">
               <span class="project-year">2025</span>
               <span class="project-arrow">↗</span>
             </div>
           </a>
-          <a class="project-item" href="#" target="_blank" rel="noopener">
+
+          <a class="project-item" href="#" target="_blank" rel="noopener"
+             data-skills="backend,database,devops">
             <div class="project-left">
               <div class="project-title">Project Beta</div>
               <div class="project-desc">Short description of the project and the problem it solves.</div>
+              <div class="project-skill-tags">
+                <span class="project-skill-tag" data-skill="backend">Backend</span>
+                <span class="project-skill-tag" data-skill="database">Database</span>
+                <span class="project-skill-tag" data-skill="devops">DevOps</span>
+              </div>
             </div>
             <div class="project-right">
               <span class="project-year">2024</span>
               <span class="project-arrow">↗</span>
             </div>
           </a>
+
+          <a class="project-item" href="#" target="_blank" rel="noopener"
+             data-skills="frontend,mobile,api,testing">
+            <div class="project-left">
+              <div class="project-title">Project Gamma</div>
+              <div class="project-desc">Short description of the project and the problem it solves.</div>
+              <div class="project-skill-tags">
+                <span class="project-skill-tag" data-skill="frontend">Frontend</span>
+                <span class="project-skill-tag" data-skill="mobile">Mobile</span>
+                <span class="project-skill-tag" data-skill="api">API</span>
+                <span class="project-skill-tag" data-skill="testing">Testing</span>
+              </div>
+            </div>
+            <div class="project-right">
+              <span class="project-year">2024</span>
+              <span class="project-arrow">↗</span>
+            </div>
+          </a>
+
         </div>
       </section>
 
@@ -287,6 +420,64 @@
 
   </div>
 
+  <script>
+    (function () {
+      var activeSkill = null;
+      var tags     = document.querySelectorAll('.skill-tag');
+      var projects = document.querySelectorAll('.project-item');
+      var status   = document.getElementById('filter-status');
+      var hint     = document.getElementById('skills-hint');
+
+      tags.forEach(function (tag) {
+        tag.addEventListener('click', function () {
+          var skill = tag.dataset.skill;
+
+          /* deselect if same skill clicked again */
+          if (activeSkill === skill) {
+            reset();
+            return;
+          }
+
+          /* activate */
+          activeSkill = skill;
+          tags.forEach(function (t) { t.classList.remove('active'); });
+          tag.classList.add('active');
+
+          var matched = 0;
+          projects.forEach(function (p) {
+            var pSkills = p.dataset.skills.split(',');
+            var isMatch = pSkills.indexOf(skill) !== -1;
+            p.classList.toggle('highlighted', isMatch);
+            p.classList.toggle('dimmed', !isMatch);
+            if (isMatch) matched++;
+
+            /* highlight matching skill tags inside each project */
+            p.querySelectorAll('.project-skill-tag').forEach(function (st) {
+              st.classList.toggle('matched', st.dataset.skill === skill);
+            });
+          });
+
+          status.textContent = matched + ' of ' + projects.length + ' projects use ' + tag.textContent + ' — click to reset';
+          status.classList.add('visible');
+          if (hint) hint.style.opacity = '0';
+        });
+      });
+
+      function reset() {
+        activeSkill = null;
+        tags.forEach(function (t) { t.classList.remove('active'); });
+        projects.forEach(function (p) {
+          p.classList.remove('highlighted', 'dimmed');
+          p.querySelectorAll('.project-skill-tag').forEach(function (st) {
+            st.classList.remove('matched');
+          });
+        });
+        status.classList.remove('visible');
+        if (hint) hint.style.opacity = '';
+      }
+    }());
+  </script>
   <script src="tracking.js" defer></script>
+
 </body>
 </html>

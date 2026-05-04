@@ -35,6 +35,17 @@
     });
   }
 
+  /* ── Skill filter ── */
+  document.querySelectorAll('.skill-tag').forEach(function (tag) {
+    tag.addEventListener('click', function () {
+      push({
+        event:       tag.classList.contains('active') ? 'skill_filter_reset' : 'skill_filter_select',
+        skill_name:  tag.textContent.trim(),
+        skill_slug:  tag.dataset.skill
+      });
+    });
+  });
+
   /* ── Project items ── */
   document.querySelectorAll('.project-item').forEach(function (item) {
     var titleEl = item.querySelector('.project-title');
