@@ -11,7 +11,7 @@
     gtag('js', new Date());
     gtag('config', 'G-8PQN90VD28');
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;700&family=Playfair+Display:wght@400;700&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Space+Grotesk:wght@400;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -48,10 +48,32 @@
       letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem;
     }
     .headline {
-      font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 9vw, 6.5rem);
-      line-height: 0.95; letter-spacing: 0.03em; color: var(--ink); margin-bottom: 2.5rem;
+      font-size: clamp(3rem, 8.5vw, 6rem);
+      line-height: 1; letter-spacing: 0.02em; color: var(--ink); margin-bottom: 2.5rem;
+      display: block;
     }
-    .headline em { font-style: normal; color: var(--accent); }
+
+    /* slot machine */
+    .slot {
+      display: inline-block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      vertical-align: baseline;
+      will-change: font-family;
+    }
+    .slot-tld { color: var(--accent); }
+
+    @keyframes slot-tick {
+      0%   { opacity: 0.2; transform: translateY(-4px); }
+      100% { opacity: 1;   transform: translateY(0); }
+    }
+    @keyframes slot-land {
+      0%   { opacity: 0; transform: translateY(-8px); }
+      60%  { transform: translateY(2px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .slot.ticking { animation: slot-tick 0.07s ease-out both; }
+    .slot.landing { animation: slot-land 0.22s cubic-bezier(0.22,1,0.36,1) both; }
     .hero-bio {
       font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 300;
       line-height: 1.85; color: var(--muted); max-width: 480px; margin-bottom: 2.5rem;
@@ -186,7 +208,7 @@
       <!-- HERO -->
       <section class="hero" id="hero">
         <div class="hero-label">Available for freelance — 2026</div>
-        <h1 class="headline">Your <em>Name</em>,<br>Professional Title</h1>
+        <h1 class="headline"><span class="slot" id="slot-name">diegorandazzo</span><span class="slot slot-tld" id="slot-tld">.ooo</span></h1>
         <p class="hero-bio">A brief, compelling bio about your passion for creating innovative and clean digital experiences. Replace this with your real story.</p>
         <div class="hero-cta">
           <a class="link-primary" href="#projects">View My Work</a>
@@ -492,6 +514,90 @@
       setTimeout(function () { polygon.style.opacity = '1'; }, 100);
     });
 
+  }());
+  </script>
+  <script>
+  (function () {
+    var FONTS = [
+      { family: "'Bebas Neue', sans-serif",              weight: 400, spacing: '0.02em' },
+      { family: "'Barlow', sans-serif",                  weight: 700, spacing: '-0.02em' },
+      { family: "'Playfair Display', serif",             weight: 400, spacing: '0.01em' },
+      { family: "'Space Mono', monospace",               weight: 400, spacing: '-0.03em' },
+      { family: "'Cormorant Garamond', serif",           weight: 300, spacing: '0.04em' },
+      { family: "'Space Grotesk', sans-serif",           weight: 700, spacing: '-0.03em' },
+      { family: "'DM Serif Display', serif",             weight: 400, spacing: '0.01em' },
+    ];
+
+    var elName = document.getElementById('slot-name');
+    var elTld  = document.getElementById('slot-tld');
+    var curName = 0, curTld = 0;
+
+    function applyFont(el, f) {
+      el.style.fontFamily     = f.family;
+      el.style.fontWeight     = f.weight;
+      el.style.letterSpacing  = f.spacing;
+    }
+
+    /* initial font */
+    applyFont(elName, FONTS[0]);
+    applyFont(elTld,  FONTS[0]);
+
+    function spin(el, curIdx, onDone) {
+      var steps     = 7;
+      var stepMs    = 75;
+      var step      = 0;
+
+      /* pick target — different from current */
+      var targetIdx;
+      do { targetIdx = Math.floor(Math.random() * FONTS.length); }
+      while (targetIdx === curIdx);
+
+      function tick() {
+        var f = FONTS[Math.floor(Math.random() * FONTS.length)];
+        applyFont(el, f);
+        el.classList.remove('ticking', 'landing');
+        void el.offsetWidth; /* reflow to restart animation */
+        el.classList.add('ticking');
+
+        step++;
+        if (step < steps) {
+          setTimeout(tick, stepMs + step * 8); /* slow down gradually */
+        } else {
+          setTimeout(function () {
+            applyFont(el, FONTS[targetIdx]);
+            el.classList.remove('ticking', 'landing');
+            void el.offsetWidth;
+            el.classList.add('landing');
+            onDone(targetIdx);
+          }, stepMs + step * 8);
+        }
+      }
+      tick();
+    }
+
+    function scheduleName() {
+      var delay = 2800 + Math.random() * 2200;
+      setTimeout(function () {
+        spin(elName, curName, function (idx) {
+          curName = idx;
+          scheduleName();
+        });
+      }, delay);
+    }
+
+    function scheduleTld() {
+      var delay = 1800 + Math.random() * 2500;
+      setTimeout(function () {
+        spin(elTld, curTld, function (idx) {
+          curTld = idx;
+          scheduleTld();
+        });
+      }, delay);
+    }
+
+    /* stagger start so they don't fire at the same time */
+    setTimeout(scheduleName, 1200);
+    setTimeout(scheduleTld,  2600);
   }());
   </script>
   <script src="tracking.js" defer></script>
