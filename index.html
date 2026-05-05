@@ -279,8 +279,21 @@
       .page-wrapper { padding: 0 1.25rem; }
       .navbar-links { display: none; }
       .hero { min-height: auto; padding: 3rem 0; }
+      .hero-bio { font-size: 0.88rem; }
+
+      /* headline: fluid 10vw, allow wrap, .ooo forced to new line */
+      .headline { font-size: 10vw; white-space: normal; }
+      .slot-tld { display: block; margin-top: 0.05em; }
+
       .skills-layout { flex-direction: column; gap: 2rem; }
       .radar-container { margin: 0 auto; }
+
+      /* projects: stack year below title on very small screens */
+      .project-item { gap: 1rem; }
+      .project-right { flex-direction: column; gap: 0.25rem; align-items: flex-end; }
+
+      /* footer: stack vertically */
+      footer { flex-direction: column; gap: 0.75rem; }
     }
   </style>
 </head>
