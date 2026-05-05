@@ -100,7 +100,7 @@
       --muted:  #8c8c8c;
     }
 
-    body { background-color: var(--bg); color: var(--ink); min-height: 100vh; cursor: default; }
+    body { background-color: var(--bg); color: var(--ink); min-height: 100vh; cursor: default; overflow-x: clip; }
     a, button { cursor: pointer; }
 
     .page-wrapper { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
@@ -126,16 +126,13 @@
       letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem;
     }
     .headline-wrap {
-      height: calc(clamp(3rem, 8.5vw, 6rem) * 1.3);
       margin-bottom: 2.5rem;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
     }
     .headline {
       font-size: clamp(3rem, 8.5vw, 6rem);
       line-height: 1; letter-spacing: 0.02em; color: var(--ink);
       display: block;
+      white-space: nowrap;
     }
 
     /* slot machine */
@@ -157,8 +154,8 @@
       60%  { transform: translateY(2px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-    .slot.ticking { animation: slot-tick 0.12s ease-out both; }
-    .slot.landing { animation: slot-land 0.32s cubic-bezier(0.22,1,0.36,1) both; }
+    .slot.ticking { animation: slot-tick 0.2s ease-out both; }
+    .slot.landing { animation: slot-land 0.45s cubic-bezier(0.22,1,0.36,1) both; }
     .hero-bio {
       font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 300;
       line-height: 1.85; color: var(--muted); max-width: 480px; margin-bottom: 2.5rem;
@@ -641,25 +638,23 @@
     applyFont(elTld,  FONTS[0]);
 
     function spin(el, curIdx, onDone) {
-      var steps  = 5;
-      var stepMs = 120;
-      var step   = 0;
+      var STEP_MS = 300;   /* uniform pause between ticks */
+      var STEPS   = 3;     /* three deliberate ticks, then land */
+      var step    = 0;
 
-      /* pick target — different from current */
       var targetIdx;
       do { targetIdx = Math.floor(Math.random() * FONTS.length); }
       while (targetIdx === curIdx);
 
       function tick() {
-        var f = FONTS[Math.floor(Math.random() * FONTS.length)];
-        applyFont(el, f);
+        applyFont(el, FONTS[Math.floor(Math.random() * FONTS.length)]);
         el.classList.remove('ticking', 'landing');
         void el.offsetWidth;
         el.classList.add('ticking');
 
         step++;
-        if (step < steps) {
-          setTimeout(tick, stepMs + step * 18);
+        if (step < STEPS) {
+          setTimeout(tick, STEP_MS);
         } else {
           setTimeout(function () {
             applyFont(el, FONTS[targetIdx]);
@@ -667,35 +662,27 @@
             void el.offsetWidth;
             el.classList.add('landing');
             onDone(targetIdx);
-          }, stepMs + step * 18);
+          }, STEP_MS);
         }
       }
       tick();
     }
 
     function scheduleName() {
-      var delay = 5000 + Math.random() * 4000;
       setTimeout(function () {
-        spin(elName, curName, function (idx) {
-          curName = idx;
-          scheduleName();
-        });
-      }, delay);
+        spin(elName, curName, function (idx) { curName = idx; scheduleName(); });
+      }, 6000 + Math.random() * 5000);  /* 6–11 s */
     }
 
     function scheduleTld() {
-      var delay = 4500 + Math.random() * 3500;
       setTimeout(function () {
-        spin(elTld, curTld, function (idx) {
-          curTld = idx;
-          scheduleTld();
-        });
-      }, delay);
+        spin(elTld, curTld, function (idx) { curTld = idx; scheduleTld(); });
+      }, 5000 + Math.random() * 4000);  /* 5–9 s */
     }
 
-    /* stagger start so they don't fire together */
-    setTimeout(scheduleName, 3000);
-    setTimeout(scheduleTld,  6000);
+    /* staggered first fire */
+    setTimeout(scheduleName, 3500);
+    setTimeout(scheduleTld,  7000);
   }());
   </script>
   <script>
