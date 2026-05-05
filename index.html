@@ -94,10 +94,27 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg:     #ffffff;
-      --ink:    #111111;
-      --accent: #7c3aed;
-      --muted:  #8c8c8c;
+      --bg:         #ffffff;
+      --ink:        #111111;
+      --ink-rgb:    17, 17, 17;
+      --accent:     #7c3aed;
+      --accent-rgb: 124, 58, 237;
+      --muted:      #8c8c8c;
+    }
+
+    [data-theme="dark"] {
+      --bg:         #0d0d0d;
+      --ink:        #f0eeec;
+      --ink-rgb:    240, 238, 236;
+      --accent:     #a78bfa;
+      --accent-rgb: 167, 139, 250;
+      --muted:      #666666;
+    }
+
+    /* smooth theme crossfade */
+    .theme-transitioning, .theme-transitioning * {
+      transition: background-color 0.35s ease, color 0.35s ease,
+                  border-color 0.35s ease, fill 0.35s ease, stroke 0.35s ease !important;
     }
 
     body { background-color: var(--bg); color: var(--ink); min-height: 100vh; cursor: default; overflow-x: clip; }
@@ -198,30 +215,41 @@
     .radar-container { flex-shrink: 0; }
     #radar-chart { display: block; overflow: visible; }
 
+    /* radar SVG — CSS-driven so all colours update on theme switch */
+    .radar-ring       { fill: none; stroke-width: 1; }
+    .radar-ring-inner { stroke: rgba(var(--ink-rgb),0.06); }
+    .radar-ring-outer { stroke: rgba(var(--ink-rgb),0.12); }
+    .radar-axis-line  { stroke: rgba(var(--ink-rgb),0.1); stroke-width: 1; transition: stroke 0.3s, stroke-width 0.3s; }
+    .radar-axis-line.is-active  { stroke: var(--accent); stroke-width: 1.5; }
+    .radar-poly       { fill: rgba(var(--accent-rgb),0.08); stroke: var(--accent); stroke-width: 1.5; }
+    .radar-dot        { fill: var(--accent); }
+    .radar-label-text { fill: var(--muted); cursor: pointer; user-select: none; transition: fill 0.25s; }
+    .radar-label-text.is-active { fill: var(--ink); }
+
     /* SKILL TAGS */
     .skills-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; flex: 1; }
     .skill-tag {
       font-family: 'Barlow', sans-serif; font-size: 0.72rem; font-weight: 400;
       letter-spacing: 0.06em; color: var(--muted);
       padding: 0.35rem 0.85rem;
-      border: 1px solid rgba(17,17,17,0.12); border-radius: 9999px;
+      border: 1px solid rgba(var(--ink-rgb),0.12); border-radius: 9999px;
       cursor: pointer; user-select: none;
       transition: border-color 0.2s, color 0.2s, background 0.2s;
     }
-    .skill-tag:hover { border-color: rgba(17,17,17,0.3); color: var(--ink); }
-    .skill-tag.active { border-color: var(--accent); background: rgba(124,58,237,0.1); color: var(--accent); }
+    .skill-tag:hover { border-color: rgba(var(--ink-rgb),0.3); color: var(--ink); }
+    .skill-tag.active { border-color: var(--accent); background: rgba(var(--accent-rgb),0.1); color: var(--accent); }
 
     /* PROJECTS */
     .projects-list { display: flex; flex-direction: column; }
     .project-item {
       display: flex; align-items: baseline; justify-content: space-between;
       gap: 2rem; padding: 1.5rem 0;
-      border-top: 1px solid rgba(17,17,17,0.08);
+      border-top: 1px solid rgba(var(--ink-rgb),0.08);
       text-decoration: none; color: inherit;
       transition: opacity 0.3s ease, border-color 0.3s ease, padding-left 0.3s ease;
       position: relative;
     }
-    .project-item:last-child { border-bottom: 1px solid rgba(17,17,17,0.08); }
+    .project-item:last-child { border-bottom: 1px solid rgba(var(--ink-rgb),0.08); }
     .project-item:hover { opacity: 0.55; }
     .project-item.dimmed { opacity: 0.1; pointer-events: none; }
     .project-item.highlighted {
@@ -253,7 +281,7 @@
 
     /* FOOTER */
     footer {
-      padding: 2.5rem 0; border-top: 1px solid rgba(17,17,17,0.08);
+      padding: 2.5rem 0; border-top: 1px solid rgba(var(--ink-rgb),0.08);
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
     }
     .footer-copy { font-family: 'Barlow', sans-serif; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; }
@@ -264,15 +292,26 @@
     }
     .footer-links a:hover { color: var(--ink); }
 
-    /* LANG TOGGLE */
+    /* NAVBAR ACTIONS */
+    .navbar-actions { display: flex; align-items: center; gap: 0.75rem; }
+
     .lang-toggle {
       font-family: 'Barlow', sans-serif; font-size: 0.68rem; font-weight: 500;
       letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--muted); background: none;
-      border: 1px solid rgba(17,17,17,0.14); border-radius: 4px;
+      border: 1px solid rgba(var(--ink-rgb),0.14); border-radius: 4px;
       padding: 0.22rem 0.6rem; transition: color 0.2s, border-color 0.2s;
     }
-    .lang-toggle:hover { color: var(--ink); border-color: rgba(17,17,17,0.35); }
+    .lang-toggle:hover { color: var(--ink); border-color: rgba(var(--ink-rgb),0.35); }
+
+    /* half-circle theme switch button */
+    .theme-toggle {
+      width: 18px; height: 18px; border-radius: 50%; padding: 0; flex-shrink: 0;
+      border: 1.5px solid var(--ink);
+      background: linear-gradient(to right, var(--ink) 50%, transparent 50%);
+      transition: transform 0.45s ease, border-color 0.35s ease, background 0.35s ease;
+    }
+    .theme-toggle:hover { transform: rotate(180deg); }
 
     /* RESPONSIVE */
     @media (max-width: 600px) {
@@ -306,7 +345,10 @@
         <a href="#skills" data-i18n="nav.skills">Skills</a>
         <a href="#projects" data-i18n="nav.projects">Projects</a>
       </nav>
-      <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">EN</button>
+      <div class="navbar-actions">
+        <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">EN</button>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Switch theme" title="Switch theme"></button>
+      </div>
     </header>
 
     <main>
@@ -426,7 +468,6 @@
       { name: 'Testing',  slug: 'testing',  level: 55 },
     ];
 
-    var C       = { ink: '#111111', accent: '#7c3aed', muted: '#8c8c8c', bg: '#ffffff' };
     var NS      = 'http://www.w3.org/2000/svg';
     var SIZE    = 280;
     var CX = SIZE / 2, CY = SIZE / 2;
@@ -455,12 +496,11 @@
     /* ── Build chart ── */
     var svg = document.getElementById('radar-chart');
 
-    /* grid rings */
+    /* grid rings — colour via CSS class, updates automatically on theme switch */
     [25, 50, 75, 100].forEach(function (p) {
       svg.appendChild(el('polygon', {
-        points: polyPts(p), fill: 'none',
-        stroke: p === 100 ? 'rgba(17,17,17,0.12)' : 'rgba(17,17,17,0.06)',
-        'stroke-width': '1'
+        points: polyPts(p),
+        class: p === 100 ? 'radar-ring radar-ring-outer' : 'radar-ring radar-ring-inner'
       }));
     });
 
@@ -469,18 +509,13 @@
       var p = pt(i, 100);
       svg.appendChild(el('line', {
         x1: CX, y1: CY, x2: p[0], y2: p[1],
-        stroke: 'rgba(17,17,17,0.1)', 'stroke-width': '1',
-        id: 'axis-' + s.slug,
-        style: 'transition: stroke 0.3s, stroke-width 0.3s'
+        id: 'axis-' + s.slug, class: 'radar-axis-line'
       }));
     });
 
     /* data polygon */
     var polygon = el('polygon', {
-      points: dataPts(),
-      fill: 'rgba(124,58,237,0.12)',
-      stroke: C.accent, 'stroke-width': '1.5',
-      id: 'radar-polygon'
+      points: dataPts(), id: 'radar-polygon', class: 'radar-poly'
     });
     svg.appendChild(polygon);
 
@@ -489,11 +524,8 @@
       var p = pt(i, s.level);
       svg.appendChild(el('circle', {
         cx: p[0], cy: p[1], r: '3',
-        fill: C.accent,
-        id: 'dot-' + s.slug,
-        style: 'transition: r 0.25s, fill 0.25s'
+        id: 'dot-' + s.slug, class: 'radar-dot'
       }));
-      /* invisible hit area for click */
       var hit = el('circle', {
         cx: p[0], cy: p[1], r: '14',
         fill: 'transparent', style: 'cursor:pointer'
@@ -504,24 +536,16 @@
 
     /* labels */
     SKILLS.forEach(function (s, i) {
-      var a  = angle(i);
-      var lx = CX + LABEL_R * Math.cos(a);
-      var ly = CY + LABEL_R * Math.sin(a);
-      /* text-anchor based on horizontal position */
+      var a      = angle(i);
+      var lx     = CX + LABEL_R * Math.cos(a);
+      var ly     = CY + LABEL_R * Math.sin(a);
       var anchor = Math.abs(lx - CX) < 12 ? 'middle' : lx > CX ? 'start' : 'end';
       var txt = el('text', {
-        x: lx, y: ly,
-        'text-anchor': anchor,
-        'dominant-baseline': 'middle',
-        'font-family': 'Barlow, sans-serif',
-        'font-size': '8.5',
-        'letter-spacing': '0.07em',
-        fill: C.muted,
-        id: 'label-' + s.slug,
-        style: 'cursor:pointer; user-select:none; transition: fill 0.25s, font-weight 0.25s; text-transform:uppercase'
+        x: lx, y: ly, 'text-anchor': anchor, 'dominant-baseline': 'middle',
+        'font-family': 'Barlow, sans-serif', 'font-size': '8.5', 'letter-spacing': '0.07em',
+        id: 'label-' + s.slug, class: 'radar-label-text', 'data-skill': s.slug
       });
       txt.textContent = s.name;
-      txt.dataset.skill = s.slug;
       svg.appendChild(txt);
     });
 
@@ -551,18 +575,15 @@
         t.classList.toggle('active', t.dataset.skill === slug);
       });
 
-      /* radar */
+      /* radar — colour via CSS class so theme switch requires no extra logic */
       SKILLS.forEach(function (s) {
-        var dot   = document.getElementById('dot-' + s.slug);
-        var label = document.getElementById('label-' + s.slug);
-        var axis  = document.getElementById('axis-' + s.slug);
         var isActive = s.slug === slug;
-        if (dot)   { dot.setAttribute('r',    isActive ? '5' : '3'); }
-        if (label) { label.setAttribute('fill', isActive ? C.ink : C.muted); }
-        if (axis)  {
-          axis.setAttribute('stroke',       isActive ? C.accent : 'rgba(17,17,17,0.1)');
-          axis.setAttribute('stroke-width', isActive ? '1.5'    : '1');
-        }
+        var dot   = document.getElementById('dot-'   + s.slug);
+        var label = document.getElementById('label-' + s.slug);
+        var axis  = document.getElementById('axis-'  + s.slug);
+        if (dot)   dot.setAttribute('r', isActive ? '5' : '3');
+        if (label) label.classList.toggle('is-active', isActive);
+        if (axis)  axis.classList.toggle('is-active', isActive);
       });
 
       /* projects */
@@ -587,12 +608,12 @@
       active = null;
       document.querySelectorAll('.skill-tag').forEach(function (t) { t.classList.remove('active'); });
       SKILLS.forEach(function (s) {
-        var dot   = document.getElementById('dot-' + s.slug);
+        var dot   = document.getElementById('dot-'   + s.slug);
         var label = document.getElementById('label-' + s.slug);
-        var axis  = document.getElementById('axis-' + s.slug);
+        var axis  = document.getElementById('axis-'  + s.slug);
         if (dot)   dot.setAttribute('r', '3');
-        if (label) label.setAttribute('fill', C.muted);
-        if (axis)  { axis.setAttribute('stroke', 'rgba(17,17,17,0.1)'); axis.setAttribute('stroke-width', '1'); }
+        if (label) label.classList.remove('is-active');
+        if (axis)  axis.classList.remove('is-active');
       });
       projects.forEach(function (p) {
         p.classList.remove('highlighted', 'dimmed');
@@ -763,6 +784,32 @@
     }
 
     apply(lang);
+  }());
+  </script>
+  <script>
+  (function () {
+    var btn  = document.getElementById('theme-toggle');
+    var root = document.documentElement;
+    var DARK = 'dark';
+    var LIGHT = 'light';
+
+    function setTheme(t) {
+      root.classList.add('theme-transitioning');
+      root.dataset.theme = t;
+      localStorage.setItem('theme', t);
+      /* flip the half-circle: dark mode → rotate 180° so filled half faces right */
+      if (btn) btn.style.transform = t === DARK ? 'rotate(180deg)' : '';
+      setTimeout(function () { root.classList.remove('theme-transitioning'); }, 400);
+    }
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        setTheme(root.dataset.theme === DARK ? LIGHT : DARK);
+      });
+    }
+
+    /* restore saved preference, default light */
+    setTheme(localStorage.getItem('theme') || LIGHT);
   }());
   </script>
   <script src="tracking.js" defer></script>
