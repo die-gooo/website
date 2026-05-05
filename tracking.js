@@ -79,7 +79,7 @@
     });
   }, { threshold: 0.3 });
 
-  ['hero', 'skills', 'projects'].forEach(function (id) {
+  ['hero', 'work', 'projects', 'skills'].forEach(function (id) {
     var el = document.getElementById(id);
     if (el) sectionObserver.observe(el);
   });

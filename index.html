@@ -192,6 +192,27 @@
     }
     .link-secondary:hover { color: var(--ink); }
 
+    /* SECTION TABS — hero anchor nav */
+    .section-tabs {
+      display: flex; gap: 2rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(var(--ink-rgb),0.08);
+    }
+    .section-tab {
+      font-family: 'Barlow', sans-serif; font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      padding-top: 0.6rem;
+      border-top: 1px solid transparent;
+      margin-top: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .section-tab:hover { color: var(--ink); border-top-color: rgba(var(--ink-rgb),0.25); }
+    @media (max-width: 600px) {
+      .section-tabs { gap: 1.5rem; }
+    }
+
     /* SECTIONS */
     .section { padding: 4rem 0; }
     .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2rem; }
@@ -342,8 +363,9 @@
     <header class="navbar">
       <a class="navbar-brand" href="#hero">D. Randazzo</a>
       <nav class="navbar-links">
-        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#work"     data-i18n="nav.work">Work</a>
         <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#skills"   data-i18n="nav.skills">Skills</a>
       </nav>
       <div class="navbar-actions">
         <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">EN</button>
@@ -360,23 +382,51 @@
           <h1 class="headline"><span class="slot" id="slot-name">diegorandazzo</span><span class="slot slot-tld" id="slot-tld">.ooo</span></h1>
         </div>
         <p class="hero-bio" data-i18n="hero.bio">Freelance full-stack developer specialising in web applications, API design and data-driven interfaces. Based in Italy, open to remote projects worldwide.</p>
-        <div class="hero-cta">
-          <a class="link-primary" href="#projects" data-i18n="hero.cta.primary">View My Work</a>
-          <a class="link-secondary" href="mailto:your@email.com" data-i18n="hero.cta.secondary">Get In Touch →</a>
-        </div>
+        <a class="link-secondary" href="mailto:your@email.com" data-i18n="hero.cta.secondary">Get In Touch →</a>
+        <nav class="section-tabs" aria-label="Jump to section">
+          <a class="section-tab" href="#work"     data-i18n="nav.work">Work</a>
+          <a class="section-tab" href="#projects" data-i18n="nav.projects">Projects</a>
+          <a class="section-tab" href="#skills"   data-i18n="nav.skills">Skills</a>
+        </nav>
       </section>
 
-      <!-- SKILLS -->
-      <section class="section" id="skills">
+      <!-- WORK -->
+      <section class="section" id="work">
         <div class="section-header">
-          <span class="section-label" data-i18n="skills.label">Skills</span>
-          <span class="section-hint" id="skills-hint" data-i18n="skills.hint">select to filter projects</span>
+          <span class="section-label" data-i18n="work.label">Work</span>
         </div>
-        <div class="skills-layout">
-          <div class="radar-container">
-            <svg id="radar-chart" viewBox="0 0 280 280" width="260" height="260"></svg>
+        <div class="projects-list" id="work-list">
+
+          <div class="project-item" style="cursor:default; pointer-events:none;">
+            <div class="project-left">
+              <div class="project-title" data-i18n="work.item1.title">Company / Client</div>
+              <div class="project-desc"  data-i18n="work.item1.desc">Role · Brief description of responsibilities and outcomes.</div>
+            </div>
+            <div class="project-right">
+              <span class="project-year">2024–2026</span>
+            </div>
           </div>
-          <div class="skills-tags" id="skills-tags"></div>
+
+          <div class="project-item" style="cursor:default; pointer-events:none;">
+            <div class="project-left">
+              <div class="project-title" data-i18n="work.item2.title">Company / Client</div>
+              <div class="project-desc"  data-i18n="work.item2.desc">Role · Brief description of responsibilities and outcomes.</div>
+            </div>
+            <div class="project-right">
+              <span class="project-year">2022–2024</span>
+            </div>
+          </div>
+
+          <div class="project-item" style="cursor:default; pointer-events:none;">
+            <div class="project-left">
+              <div class="project-title" data-i18n="work.item3.title">Company / Client</div>
+              <div class="project-desc"  data-i18n="work.item3.desc">Role · Brief description of responsibilities and outcomes.</div>
+            </div>
+            <div class="project-right">
+              <span class="project-year">2020–2022</span>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -437,6 +487,20 @@
             </div>
           </a>
 
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="section" id="skills">
+        <div class="section-header">
+          <span class="section-label" data-i18n="skills.label">Skills</span>
+          <span class="section-hint" id="skills-hint" data-i18n="skills.hint">select to filter projects</span>
+        </div>
+        <div class="skills-layout">
+          <div class="radar-container">
+            <svg id="radar-chart" viewBox="0 0 280 280" width="260" height="260"></svg>
+          </div>
+          <div class="skills-tags" id="skills-tags"></div>
         </div>
       </section>
 
@@ -723,14 +787,19 @@
   (function () {
     var T = {
       en: {
-        'nav.skills':          'Skills',
+        'nav.work':            'Work',
         'nav.projects':        'Projects',
+        'nav.skills':          'Skills',
         'hero.label':          'Available for freelance — 2026',
         'hero.bio':            'Freelance full-stack developer specialising in web applications, API design and data-driven interfaces. Based in Italy, open to remote projects worldwide.',
-        'hero.cta.primary':    'View My Work',
         'hero.cta.secondary':  'Get In Touch →',
-        'skills.label':        'Skills',
-        'skills.hint':         'select to filter projects',
+        'work.label':          'Work',
+        'work.item1.title':    'Company / Client',
+        'work.item1.desc':     'Role · Brief description of responsibilities and outcomes.',
+        'work.item2.title':    'Company / Client',
+        'work.item2.desc':     'Role · Brief description of responsibilities and outcomes.',
+        'work.item3.title':    'Company / Client',
+        'work.item3.desc':     'Role · Brief description of responsibilities and outcomes.',
         'projects.label':      'Projects',
         'filter.status':       '{n} of {total} projects — click again to reset',
         'project.alpha.title': 'Project Alpha',
@@ -739,17 +808,24 @@
         'project.beta.desc':   'Short description of the project and the problem it solves.',
         'project.gamma.title': 'Project Gamma',
         'project.gamma.desc':  'Short description of the project and the problem it solves.',
+        'skills.label':        'Skills',
+        'skills.hint':         'select to filter projects',
         'footer.copy':         '© 2026 Diego Randazzo.',
       },
       it: {
-        'nav.skills':          'Competenze',
+        'nav.work':            'Lavoro',
         'nav.projects':        'Progetti',
+        'nav.skills':          'Competenze',
         'hero.label':          'Disponibile per freelance — 2026',
         'hero.bio':            'Sviluppatore full-stack freelance specializzato in applicazioni web, progettazione di API e interfacce data-driven. Basato in Italia, aperto a progetti da remoto in tutto il mondo.',
-        'hero.cta.primary':    'Vedi i miei lavori',
         'hero.cta.secondary':  'Scrivimi →',
-        'skills.label':        'Competenze',
-        'skills.hint':         'seleziona per filtrare i progetti',
+        'work.label':          'Lavoro',
+        'work.item1.title':    'Azienda / Cliente',
+        'work.item1.desc':     'Ruolo · Breve descrizione delle responsabilità e dei risultati.',
+        'work.item2.title':    'Azienda / Cliente',
+        'work.item2.desc':     'Ruolo · Breve descrizione delle responsabilità e dei risultati.',
+        'work.item3.title':    'Azienda / Cliente',
+        'work.item3.desc':     'Ruolo · Breve descrizione delle responsabilità e dei risultati.',
         'projects.label':      'Progetti',
         'filter.status':       '{n} di {total} progetti — clicca di nuovo per azzerare',
         'project.alpha.title': 'Progetto Alpha',
@@ -758,6 +834,8 @@
         'project.beta.desc':   'Breve descrizione del progetto e del problema che risolve.',
         'project.gamma.title': 'Progetto Gamma',
         'project.gamma.desc':  'Breve descrizione del progetto e del problema che risolve.',
+        'skills.label':        'Competenze',
+        'skills.hint':         'seleziona per filtrare i progetti',
         'footer.copy':         '© 2026 Diego Randazzo.',
       }
     };
