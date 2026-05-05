@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diego Randazzo — Digital Analytics &amp; CRO Specialist</title>
+  <title>Diego Randazzo — Digital Analytics &amp; CRO</title>
 
   <!-- SEO core -->
   <meta name="description" content="Digital analytics and CRO specialist with experience in tag management, tracking implementation, A/B testing and funnel optimisation. Currently at Merkle Italia. Based in Italy." />
@@ -19,7 +19,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.diegorandazzo.ooo" />
-  <meta property="og:title" content="Diego Randazzo — Digital Analytics &amp; CRO Specialist" />
+  <meta property="og:title" content="Diego Randazzo — Digital Analytics &amp; CRO" />
   <meta property="og:description" content="Digital analytics and CRO specialist with experience in tag management, tracking implementation, A/B testing and funnel optimisation. Currently at Merkle Italia." />
   <meta property="og:site_name" content="Diego Randazzo" />
   <meta property="og:locale" content="en_US" />
@@ -27,7 +27,7 @@
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Diego Randazzo — Digital Analytics &amp; CRO Specialist" />
+  <meta name="twitter:title" content="Diego Randazzo — Digital Analytics &amp; CRO" />
   <meta name="twitter:description" content="Digital analytics and CRO specialist in tag management, A/B testing and funnel optimisation. Currently at Merkle Italia." />
 
   <!-- Structured data — Person + WebSite (GEO: AI search entity signals) -->
@@ -77,7 +77,7 @@
         "@type": "WebPage",
         "@id": "https://www.diegorandazzo.ooo/#webpage",
         "url": "https://www.diegorandazzo.ooo",
-        "name": "Diego Randazzo — Digital Analytics & CRO Specialist",
+        "name": "Diego Randazzo — Digital Analytics & CRO",
         "isPartOf": { "@id": "https://www.diegorandazzo.ooo/#website" },
         "about": { "@id": "https://www.diegorandazzo.ooo/#person" },
         "description": "Portfolio of Diego Randazzo: tag management, CRO, A/B testing, data attribution and funnel analytics.",
@@ -87,13 +87,13 @@
   }
   </script>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8PQN90VD28"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-8PQN90VD28');
-  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KGCRXHD8');</script>
+  <!-- End Google Tag Manager -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;700&family=Playfair+Display:wght@400;700&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Space+Grotesk:wght@400;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -360,9 +360,95 @@
       /* footer: stack vertically */
       footer { flex-direction: column; gap: 0.75rem; }
     }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 1rem;
+      width: 1px; background: rgba(var(--ink-rgb),0.12);
+    }
+    .timeline-item { position: relative; padding-bottom: 2.5rem; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -1.5rem; top: 0.48rem;
+      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+      transform: translateX(-2.5px);
+    }
+    .timeline-company {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem;
+      letter-spacing: 0.04em; color: var(--ink);
+    }
+    .timeline-role {
+      font-family: 'Barlow', sans-serif; font-size: 0.78rem;
+      font-weight: 400; color: var(--muted); margin-top: 0.15rem;
+    }
+    .timeline-year {
+      font-family: 'Barlow', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.1em; color: var(--accent); margin-top: 0.3rem;
+      text-transform: uppercase;
+    }
+
+    /* PROJECT SLIDER */
+    .projects-slider { overflow: hidden; }
+    .projects-track {
+      display: flex;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+      will-change: transform;
+    }
+    .project-card {
+      min-width: 100%; padding: 2rem;
+      border: 1px solid rgba(var(--ink-rgb),0.1); border-radius: 0.75rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      transition: border-color 0.35s;
+    }
+    .project-card.is-active { border-color: rgba(var(--accent-rgb),0.4); }
+    .card-year {
+      font-family: 'Barlow', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase;
+    }
+    .card-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem;
+      letter-spacing: 0.04em; color: var(--ink);
+    }
+    .card-desc {
+      font-family: 'Barlow', sans-serif; font-size: 0.82rem;
+      font-weight: 300; color: var(--muted); line-height: 1.7;
+    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem; }
+    .card-tags span {
+      font-family: 'Barlow', sans-serif; font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.06em; color: var(--accent);
+      padding: 0.25rem 0.7rem;
+      border: 1px solid rgba(var(--accent-rgb),0.3); border-radius: 9999px;
+    }
+    .card-link {
+      font-family: 'Barlow', sans-serif; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      align-self: flex-start; margin-top: auto; padding-top: 0.5rem;
+      transition: color 0.2s;
+    }
+    .card-link:hover { color: var(--ink); }
+    .slider-controls { display: flex; align-items: center; gap: 0.75rem; }
+    .slider-btn {
+      font-family: 'Barlow', sans-serif; font-size: 0.85rem; line-height: 1;
+      color: var(--muted); background: none;
+      border: 1px solid rgba(var(--ink-rgb),0.12); border-radius: 4px;
+      padding: 0.2rem 0.55rem; cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .slider-btn:hover { color: var(--ink); border-color: rgba(var(--ink-rgb),0.3); }
+    .slider-counter {
+      font-family: 'Barlow', sans-serif; font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.1em; min-width: 2.5rem; text-align: center;
+    }
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGCRXHD8"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="page-wrapper">
 
     <header class="navbar">
@@ -386,7 +472,7 @@
         <div class="headline-wrap">
           <h1 class="headline"><span class="slot" id="slot-name">diegorandazzo</span><span class="slot slot-tld" id="slot-tld">.ooo</span></h1>
         </div>
-        <p class="hero-bio" data-i18n="hero.bio">Digital analytics and CRO specialist with hands-on experience in tag management, tracking implementation, A/B testing and funnel optimisation. I combine technical depth with a data-driven approach to behaviour analysis — and I use AI tools daily, both in my workflow and in personal projects.</p>
+        <p class="hero-bio" data-i18n="hero.bio" aria-hidden="true" style="display:none">Digital analytics and CRO specialist with hands-on experience in tag management, tracking implementation, A/B testing and funnel optimisation. I combine technical depth with a data-driven approach to behaviour analysis — and I use AI tools daily, both in my workflow and in personal projects.</p>
         <a class="link-secondary" href="mailto:diegorandazzo00@gmail.com" data-i18n="hero.cta.secondary">Get In Touch →</a>
         <nav class="section-tabs" aria-label="Jump to section">
           <a class="section-tab" href="#work"     data-i18n="nav.work">Work</a>
@@ -400,36 +486,24 @@
         <div class="section-header">
           <span class="section-label" data-i18n="work.label">Work</span>
         </div>
-        <div class="projects-list" id="work-list">
+        <div class="timeline" id="work-list">
 
-          <div class="project-item" style="cursor:default; pointer-events:none;">
-            <div class="project-left">
-              <div class="project-title" data-i18n="work.item1.title">Merkle Italia</div>
-              <div class="project-desc"  data-i18n="work.item1.desc">Sr. Digital Analytics &amp; CRO Specialist · Tracking implementation, A/B testing via VWO, custom GTM attribution engine, Looker Studio dashboards, advanced client-side debugging.</div>
-            </div>
-            <div class="project-right">
-              <span class="project-year">2024–</span>
-            </div>
+          <div class="timeline-item">
+            <div class="timeline-company" data-i18n="work.item1.title">Merkle Italia</div>
+            <div class="timeline-role">Sr. Digital Analytics &amp; CRO Specialist</div>
+            <div class="timeline-year">2024 — present</div>
           </div>
 
-          <div class="project-item" style="cursor:default; pointer-events:none;">
-            <div class="project-left">
-              <div class="project-title" data-i18n="work.item2.title">Intarget srl</div>
-              <div class="project-desc"  data-i18n="work.item2.desc">Data Analyst · Adv &amp; social tracking (Meta CAPI, TikTok, Criteo), Tealium iQ management, reporting for international fashion luxury and consumer electronics clients.</div>
-            </div>
-            <div class="project-right">
-              <span class="project-year">2022–2024</span>
-            </div>
+          <div class="timeline-item">
+            <div class="timeline-company" data-i18n="work.item2.title">Intarget srl</div>
+            <div class="timeline-role">Data Analyst</div>
+            <div class="timeline-year">2022 — 2024</div>
           </div>
 
-          <div class="project-item" style="cursor:default; pointer-events:none;">
-            <div class="project-left">
-              <div class="project-title" data-i18n="work.item3.title">Dibix srl</div>
-              <div class="project-desc"  data-i18n="work.item3.desc">Web Developer · E-commerce platforms (WordPress, Magento, Shopify), CRO with Google Optimize &amp; Hotjar, feed management, Google Analytics → GA4 migration.</div>
-            </div>
-            <div class="project-right">
-              <span class="project-year">2020–2022</span>
-            </div>
+          <div class="timeline-item">
+            <div class="timeline-company" data-i18n="work.item3.title">Dibix srl</div>
+            <div class="timeline-role">Web Developer</div>
+            <div class="timeline-year">2020 — 2022</div>
           </div>
 
         </div>
@@ -439,56 +513,44 @@
       <section class="section" id="projects">
         <div class="section-header">
           <span class="section-label" data-i18n="projects.label">Projects</span>
+          <div class="slider-controls">
+            <button class="slider-btn slider-prev" aria-label="Previous project">←</button>
+            <span class="slider-counter" id="slider-counter">1 / 3</span>
+            <button class="slider-btn slider-next" aria-label="Next project">→</button>
+          </div>
         </div>
-        <div class="filter-status" id="filter-status"></div>
-        <div class="projects-list" id="projects-list">
+        <div class="projects-slider">
+          <div class="projects-track" id="projects-track">
 
-          <a class="project-item" href="https://github.com/die-gooo/website" target="_blank" rel="noopener" data-skills="frontend,gtm,analytics">
-            <div class="project-left">
-              <div class="project-title" data-i18n="project.alpha.title">diegorandazzo.ooo</div>
-              <div class="project-desc" data-i18n="project.alpha.desc">This portfolio — static site in vanilla HTML, CSS &amp; JS with a custom GTM event-tracking layer and schema.org structured data for AI search.</div>
-              <div class="project-skill-tags">
-                <span class="project-skill-tag" data-skill="frontend">Frontend</span>
-                <span class="project-skill-tag" data-skill="gtm">GTM</span>
-                <span class="project-skill-tag" data-skill="analytics">Analytics</span>
+            <div class="project-card" data-skills="frontend,gtm,analytics">
+              <div class="card-year">2026</div>
+              <div class="card-title" data-i18n="project.alpha.title">diegorandazzo.ooo</div>
+              <div class="card-desc" data-i18n="project.alpha.desc">This portfolio — static site in vanilla HTML, CSS &amp; JS with a custom GTM event-tracking layer and schema.org structured data for AI search.</div>
+              <div class="card-tags">
+                <span>Frontend</span><span>GTM</span><span>Analytics</span>
+              </div>
+              <a class="card-link" href="https://github.com/die-gooo/website" target="_blank" rel="noopener">↗ GitHub</a>
+            </div>
+
+            <div class="project-card" data-skills="gtm,analytics,frontend">
+              <div class="card-year">2024</div>
+              <div class="card-title" data-i18n="project.beta.title">GTM Attribution Engine</div>
+              <div class="card-desc" data-i18n="project.beta.desc">Custom e-commerce attribution system built in GTM (JS + LocalStorage) to track conversion rate and revenue from a third-party product recommendation widget.</div>
+              <div class="card-tags">
+                <span>GTM</span><span>Analytics</span><span>Frontend</span>
               </div>
             </div>
-            <div class="project-right">
-              <span class="project-year">2026</span>
-              <span class="project-arrow">↗</span>
-            </div>
-          </a>
 
-          <a class="project-item" href="#" target="_blank" rel="noopener" data-skills="gtm,analytics,frontend" style="cursor:default; pointer-events:none;">
-            <div class="project-left">
-              <div class="project-title" data-i18n="project.beta.title">GTM Attribution Engine</div>
-              <div class="project-desc" data-i18n="project.beta.desc">Custom e-commerce attribution system built in GTM (JS + LocalStorage) to track conversion rate and revenue from a third-party product recommendation widget.</div>
-              <div class="project-skill-tags">
-                <span class="project-skill-tag" data-skill="gtm">GTM</span>
-                <span class="project-skill-tag" data-skill="analytics">Analytics</span>
-                <span class="project-skill-tag" data-skill="frontend">Frontend</span>
+            <div class="project-card" data-skills="cro,dataviz,analytics">
+              <div class="card-year">2025</div>
+              <div class="card-title" data-i18n="project.gamma.title">CRO Reporting Suite</div>
+              <div class="card-desc" data-i18n="project.gamma.desc">Advanced Looker Studio dashboards for funnel KPIs, market trends and campaign performance — built for enterprise retail and travel clients.</div>
+              <div class="card-tags">
+                <span>CRO</span><span>Looker Studio</span><span>Analytics</span>
               </div>
             </div>
-            <div class="project-right">
-              <span class="project-year">2024</span>
-            </div>
-          </a>
 
-          <a class="project-item" href="#" target="_blank" rel="noopener" data-skills="cro,dataviz,analytics" style="cursor:default; pointer-events:none;">
-            <div class="project-left">
-              <div class="project-title" data-i18n="project.gamma.title">CRO Reporting Suite</div>
-              <div class="project-desc" data-i18n="project.gamma.desc">Advanced Looker Studio dashboards for funnel KPIs, market trends and campaign performance — built for enterprise retail and travel clients.</div>
-              <div class="project-skill-tags">
-                <span class="project-skill-tag" data-skill="cro">CRO</span>
-                <span class="project-skill-tag" data-skill="dataviz">Looker Studio</span>
-                <span class="project-skill-tag" data-skill="analytics">Analytics</span>
-              </div>
-            </div>
-            <div class="project-right">
-              <span class="project-year">2025</span>
-            </div>
-          </a>
-
+          </div>
         </div>
       </section>
 
@@ -496,7 +558,6 @@
       <section class="section" id="skills">
         <div class="section-header">
           <span class="section-label" data-i18n="skills.label">Skills</span>
-          <span class="section-hint" id="skills-hint" data-i18n="skills.hint">select to filter projects</span>
         </div>
         <div class="skills-layout">
           <div class="radar-container">
@@ -521,18 +582,21 @@
 
   <script>
   (function () {
-    /* ── Data ── */
+    /* ── Skills data ── */
     var SKILLS = [
-      { name: 'GTM',          slug: 'gtm',      level: 94 },
-      { name: 'Analytics',    slug: 'analytics', level: 90 },
-      { name: 'CRO & A/B',   slug: 'cro',      level: 82 },
-      { name: 'Looker Studio',slug: 'dataviz',  level: 78 },
-      { name: 'Frontend',     slug: 'frontend', level: 74 },
-      { name: 'Privacy',      slug: 'privacy',  level: 68 },
-      { name: 'AI & Tools',   slug: 'ai',       level: 72 },
-      { name: 'SQL',          slug: 'sql',      level: 52 },
-      { name: 'App Tracking', slug: 'mobile',   level: 65 },
+      { name: 'GTM',           slug: 'gtm',      level: 94 },
+      { name: 'Analytics',     slug: 'analytics', level: 90 },
+      { name: 'CRO & A/B',    slug: 'cro',      level: 82 },
+      { name: 'Looker Studio', slug: 'dataviz',  level: 78 },
+      { name: 'Frontend',      slug: 'frontend', level: 74 },
+      { name: 'Privacy',       slug: 'privacy',  level: 68 },
+      { name: 'AI & Tools',    slug: 'ai',       level: 72 },
+      { name: 'SQL',           slug: 'sql',      level: 52 },
+      { name: 'App Tracking',  slug: 'mobile',   level: 65 },
     ];
+
+    /* GA4 → analytics, GTM → gtm, JS/HTML/CSS → frontend: always highlighted */
+    var CORE = ['gtm', 'analytics', 'frontend'];
 
     var NS      = 'http://www.w3.org/2000/svg';
     var SIZE    = 280;
@@ -542,7 +606,7 @@
     var N       = SKILLS.length;
 
     /* ── SVG helpers ── */
-    function el(tag, attrs) {
+    function svgEl(tag, attrs) {
       var e = document.createElementNS(NS, tag);
       Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
       return e;
@@ -559,63 +623,47 @@
       return SKILLS.map(function (s, i) { return pt(i, s.level).join(','); }).join(' ');
     }
 
-    /* ── Build chart ── */
+    /* ── Build radar chart ── */
     var svg = document.getElementById('radar-chart');
 
-    /* grid rings — colour via CSS class, updates automatically on theme switch */
     [25, 50, 75, 100].forEach(function (p) {
-      svg.appendChild(el('polygon', {
+      svg.appendChild(svgEl('polygon', {
         points: polyPts(p),
         class: p === 100 ? 'radar-ring radar-ring-outer' : 'radar-ring radar-ring-inner'
       }));
     });
 
-    /* axis lines */
     SKILLS.forEach(function (s, i) {
       var p = pt(i, 100);
-      svg.appendChild(el('line', {
+      svg.appendChild(svgEl('line', {
         x1: CX, y1: CY, x2: p[0], y2: p[1],
         id: 'axis-' + s.slug, class: 'radar-axis-line'
       }));
     });
 
-    /* data polygon */
-    var polygon = el('polygon', {
-      points: dataPts(), id: 'radar-polygon', class: 'radar-poly'
-    });
+    var polygon = svgEl('polygon', { points: dataPts(), id: 'radar-polygon', class: 'radar-poly' });
     svg.appendChild(polygon);
 
-    /* dots + hit areas */
     SKILLS.forEach(function (s, i) {
       var p = pt(i, s.level);
-      svg.appendChild(el('circle', {
-        cx: p[0], cy: p[1], r: '3',
-        id: 'dot-' + s.slug, class: 'radar-dot'
-      }));
-      var hit = el('circle', {
-        cx: p[0], cy: p[1], r: '14',
-        fill: 'transparent', style: 'cursor:pointer'
-      });
-      hit.dataset.skill = s.slug;
-      svg.appendChild(hit);
+      svg.appendChild(svgEl('circle', { cx: p[0], cy: p[1], r: '3', id: 'dot-' + s.slug, class: 'radar-dot' }));
     });
 
-    /* labels */
     SKILLS.forEach(function (s, i) {
       var a      = angle(i);
       var lx     = CX + LABEL_R * Math.cos(a);
       var ly     = CY + LABEL_R * Math.sin(a);
       var anchor = Math.abs(lx - CX) < 12 ? 'middle' : lx > CX ? 'start' : 'end';
-      var txt = el('text', {
+      var txt = svgEl('text', {
         x: lx, y: ly, 'text-anchor': anchor, 'dominant-baseline': 'middle',
         'font-family': 'Barlow, sans-serif', 'font-size': '8.5', 'letter-spacing': '0.07em',
-        id: 'label-' + s.slug, class: 'radar-label-text', 'data-skill': s.slug
+        id: 'label-' + s.slug, class: 'radar-label-text'
       });
       txt.textContent = s.name;
       svg.appendChild(txt);
     });
 
-    /* ── Build tag pills from same data ── */
+    /* ── Build tag pills ── */
     var tagsEl = document.getElementById('skills-tags');
     SKILLS.forEach(function (s) {
       var span = document.createElement('span');
@@ -625,88 +673,60 @@
       tagsEl.appendChild(span);
     });
 
-    /* ── Filter state ── */
-    var active   = null;
-    var projects = document.querySelectorAll('.project-item');
-    var status   = document.getElementById('filter-status');
-    var hint     = document.getElementById('skills-hint');
-
-    function activate(slug) {
-      /* toggle off */
-      if (active === slug) { reset(); return; }
-      active = slug;
-
-      /* tags */
-      document.querySelectorAll('.skill-tag').forEach(function (t) {
-        t.classList.toggle('active', t.dataset.skill === slug);
+    /* ── Skill highlight (driven by active project) ── */
+    function setSkills(projectSlugs) {
+      var active = CORE.slice();
+      (projectSlugs || []).forEach(function (s) {
+        if (active.indexOf(s) === -1) active.push(s);
       });
-
-      /* radar — colour via CSS class so theme switch requires no extra logic */
       SKILLS.forEach(function (s) {
-        var isActive = s.slug === slug;
+        var on    = active.indexOf(s.slug) !== -1;
         var dot   = document.getElementById('dot-'   + s.slug);
         var label = document.getElementById('label-' + s.slug);
         var axis  = document.getElementById('axis-'  + s.slug);
-        if (dot)   dot.setAttribute('r', isActive ? '5' : '3');
-        if (label) label.classList.toggle('is-active', isActive);
-        if (axis)  axis.classList.toggle('is-active', isActive);
+        var tag   = tagsEl.querySelector('[data-skill="' + s.slug + '"]');
+        if (dot)   dot.setAttribute('r', on ? '5' : '3');
+        if (label) label.classList.toggle('is-active', on);
+        if (axis)  axis.classList.toggle('is-active', on);
+        if (tag)   tag.classList.toggle('active', on);
       });
-
-      /* projects */
-      var matched = 0;
-      projects.forEach(function (p) {
-        var isMatch = p.dataset.skills.split(',').indexOf(slug) !== -1;
-        p.classList.toggle('highlighted', isMatch);
-        p.classList.toggle('dimmed',      !isMatch);
-        if (isMatch) matched++;
-        p.querySelectorAll('.project-skill-tag').forEach(function (st) {
-          st.classList.toggle('matched', st.dataset.skill === slug);
-        });
-      });
-
-      var tmpl = window._i18nFilterStatus || '{n} of {total} projects — click again to reset';
-      status.textContent = tmpl.replace('{n}', matched).replace('{total}', projects.length);
-      status.classList.add('visible');
-      if (hint) hint.style.opacity = '0';
     }
 
-    function reset() {
-      active = null;
-      document.querySelectorAll('.skill-tag').forEach(function (t) { t.classList.remove('active'); });
-      SKILLS.forEach(function (s) {
-        var dot   = document.getElementById('dot-'   + s.slug);
-        var label = document.getElementById('label-' + s.slug);
-        var axis  = document.getElementById('axis-'  + s.slug);
-        if (dot)   dot.setAttribute('r', '3');
-        if (label) label.classList.remove('is-active');
-        if (axis)  axis.classList.remove('is-active');
-      });
-      projects.forEach(function (p) {
-        p.classList.remove('highlighted', 'dimmed');
-        p.querySelectorAll('.project-skill-tag').forEach(function (st) { st.classList.remove('matched'); });
-      });
-      status.classList.remove('visible');
-      if (hint) hint.style.opacity = '';
+    /* ── Slider ── */
+    var track   = document.getElementById('projects-track');
+    var cards   = track ? Array.from(track.querySelectorAll('.project-card')) : [];
+    var counter = document.getElementById('slider-counter');
+    var current = 0;
+
+    function goTo(idx) {
+      current = (idx + cards.length) % cards.length;
+      if (track) track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      cards.forEach(function (c, i) { c.classList.toggle('is-active', i === current); });
+      if (counter) counter.textContent = (current + 1) + ' / ' + cards.length;
+      var slugs = cards[current] ? (cards[current].dataset.skills || '').split(',') : [];
+      setSkills(slugs);
     }
 
-    /* ── Event listeners ── */
-    /* tag pills */
-    document.getElementById('skills-tags').addEventListener('click', function (e) {
-      var tag = e.target.closest('.skill-tag');
-      if (tag) activate(tag.dataset.skill);
-    });
+    var prevBtn = document.querySelector('.slider-prev');
+    var nextBtn = document.querySelector('.slider-next');
+    if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
 
-    /* radar hit areas + labels */
-    svg.addEventListener('click', function (e) {
-      var slug = e.target.dataset.skill;
-      if (slug) activate(slug);
-    });
+    /* touch swipe support */
+    var touchX = 0;
+    if (track) {
+      track.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
+      });
+    }
 
-    /* ── Animate polygon on load ── */
+    /* ── Init: fade polygon + set first slide ── */
     polygon.style.opacity = '0';
     polygon.style.transition = 'opacity 0.8s ease';
     requestAnimationFrame(function () {
-      setTimeout(function () { polygon.style.opacity = '1'; }, 100);
+      setTimeout(function () { polygon.style.opacity = '1'; goTo(0); }, 100);
     });
 
   }());
