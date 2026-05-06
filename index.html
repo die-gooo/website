@@ -640,6 +640,46 @@
               </div>
             </div>
 
+            <div class="project-card" data-skills="frontend,ai">
+              <div class="card-year">2025</div>
+              <div class="card-title" data-i18n="project.eemage.title">Eemage</div>
+              <div class="card-desc" data-i18n="project.eemage.desc">Browser image tool — merge, crop and annotate images side by side with arrows, shapes and text. No login, no upload, exports as PNG instantly.</div>
+              <div class="card-tags">
+                <span>Frontend</span><span>Canvas API</span><span>AI & Tools</span>
+              </div>
+              <a class="card-link" href="https://github.com/die-gooo/eemage" target="_blank" rel="noopener">↗ GitHub</a>
+            </div>
+
+            <div class="project-card" data-skills="frontend,sql">
+              <div class="card-year">2025</div>
+              <div class="card-title" data-i18n="project.dinnervote.title">Dinner Vote</div>
+              <div class="card-desc" data-i18n="project.dinnervote.desc">React app for a group of friends to vote and rank restaurant evenings. Firebase Realtime DB, avatar login, category sliders, live leaderboard.</div>
+              <div class="card-tags">
+                <span>React</span><span>Firebase</span><span>Tailwind</span>
+              </div>
+              <a class="card-link" href="https://github.com/die-gooo/v1_quiz" target="_blank" rel="noopener">↗ GitHub</a>
+            </div>
+
+            <div class="project-card" data-skills="frontend,ai">
+              <div class="card-year">2026</div>
+              <div class="card-title" data-i18n="project.cityvibe.title">CityVibe</div>
+              <div class="card-desc" data-i18n="project.cityvibe.desc">Landing MVP — full-screen POV video background with Spotify embed. Built with Next.js, Vercel Blob and KV.</div>
+              <div class="card-tags">
+                <span>Next.js</span><span>TypeScript</span><span>Vercel</span>
+              </div>
+              <a class="card-link" href="https://github.com/die-gooo/vibeCity" target="_blank" rel="noopener">↗ GitHub</a>
+            </div>
+
+            <div class="project-card" data-skills="frontend,sql,mobile,gtm,analytics">
+              <div class="card-year">2025</div>
+              <div class="card-title" data-i18n="project.livescore.title">Livescore Jules</div>
+              <div class="card-desc" data-i18n="project.livescore.desc">Real-time futsal scoreboard for Italian Serie C1. Live updates via Supabase Realtime, push notifications per match, admin dashboard, GTM analytics.</div>
+              <div class="card-tags">
+                <span>Next.js</span><span>Supabase</span><span>GTM</span><span>Push API</span>
+              </div>
+              <a class="card-link" href="https://github.com/die-gooo/livescore-jules" target="_blank" rel="noopener">↗ GitHub</a>
+            </div>
+
           </div>
         </div>
       </section>
@@ -693,15 +733,15 @@
 
     /* Skill → project names mapping (for the All Skills panel) */
     var SKILL_PROJECTS = {
-      gtm:       ['diegorandazzo.ooo', 'GTM Attribution Engine'],
-      analytics: ['diegorandazzo.ooo', 'GTM Attribution Engine', 'CRO Reporting Suite'],
+      gtm:       ['diegorandazzo.ooo', 'GTM Attribution Engine', 'Livescore Jules'],
+      analytics: ['diegorandazzo.ooo', 'GTM Attribution Engine', 'CRO Reporting Suite', 'Livescore Jules'],
       cro:       ['CRO Reporting Suite'],
       dataviz:   ['CRO Reporting Suite'],
-      frontend:  ['diegorandazzo.ooo', 'GTM Attribution Engine'],
+      frontend:  ['diegorandazzo.ooo', 'GTM Attribution Engine', 'Eemage', 'Dinner Vote', 'CityVibe', 'Livescore Jules'],
       privacy:   [],
-      ai:        [],
-      sql:       [],
-      mobile:    [],
+      ai:        ['Eemage', 'CityVibe'],
+      sql:       ['Dinner Vote', 'Livescore Jules'],
+      mobile:    ['Livescore Jules'],
     };
 
     var NS      = 'http://www.w3.org/2000/svg';
@@ -991,8 +1031,16 @@
         'project.alpha.desc':  'This portfolio — static site in vanilla HTML, CSS & JS with a custom GTM event-tracking layer and schema.org structured data for AI search.',
         'project.beta.title':  'GTM Attribution Engine',
         'project.beta.desc':   'Custom e-commerce attribution system built in GTM (JS + LocalStorage) to track conversion rate and revenue from a third-party product recommendation widget.',
-        'project.gamma.title': 'CRO Reporting Suite',
-        'project.gamma.desc':  'Advanced Looker Studio dashboards for funnel KPIs, market trends and campaign performance — built for enterprise retail and travel clients.',
+        'project.gamma.title':     'CRO Reporting Suite',
+        'project.gamma.desc':      'Advanced Looker Studio dashboards for funnel KPIs, market trends and campaign performance — built for enterprise retail and travel clients.',
+        'project.eemage.title':    'Eemage',
+        'project.eemage.desc':     'Browser image tool — merge, crop and annotate images side by side with arrows, shapes and text. No login, no upload, exports as PNG instantly.',
+        'project.dinnervote.title':'Dinner Vote',
+        'project.dinnervote.desc': 'React app for a group of friends to vote and rank restaurant evenings. Firebase Realtime DB, avatar login, category sliders, live leaderboard.',
+        'project.cityvibe.title':  'CityVibe',
+        'project.cityvibe.desc':   'Landing MVP — full-screen POV video background with Spotify embed. Built with Next.js, Vercel Blob and KV.',
+        'project.livescore.title': 'Livescore Jules',
+        'project.livescore.desc':  'Real-time futsal scoreboard for Italian Serie C1. Live updates via Supabase Realtime, push notifications per match, admin dashboard, GTM analytics.',
         'skills.label':        'Skills',
         'skills.hint':         'select to filter projects',
         'footer.copy':         '© 2025 Diego Randazzo — All content generated with AI',
@@ -1017,8 +1065,16 @@
         'project.alpha.desc':  'Questo portfolio — sito statico in HTML, CSS e JS vanilla con tracking eventi custom via GTM e dati strutturati schema.org per la ricerca AI.',
         'project.beta.title':  'GTM Attribution Engine',
         'project.beta.desc':   'Sistema custom di attribuzione e-commerce in GTM (JS + LocalStorage) per tracciare conversion rate e fatturato di un widget di product recommendation esterno.',
-        'project.gamma.title': 'CRO Reporting Suite',
-        'project.gamma.desc':  'Dashboard avanzate in Looker Studio per KPI di funnel, trend di mercato e performance di campagna — per clienti enterprise retail e travel.',
+        'project.gamma.title':     'CRO Reporting Suite',
+        'project.gamma.desc':      'Dashboard avanzate in Looker Studio per KPI di funnel, trend di mercato e performance di campagna — per clienti enterprise retail e travel.',
+        'project.eemage.title':    'Eemage',
+        'project.eemage.desc':     'Tool browser per immagini — unisci, ritaglia e annota side by side con frecce, forme e testo. Nessun login, nessun upload, esporta in PNG.',
+        'project.dinnervote.title':'Dinner Vote',
+        'project.dinnervote.desc': 'App React per votare e classificare serate al ristorante in gruppo. Firebase Realtime, login con avatar, slider per categoria, classifica live.',
+        'project.cityvibe.title':  'CityVibe',
+        'project.cityvibe.desc':   'Landing MVP — video POV a schermo intero con Spotify embed. Costruito con Next.js, Vercel Blob e KV.',
+        'project.livescore.title': 'Livescore Jules',
+        'project.livescore.desc':  'Tabellone real-time per il futsal Serie C1. Aggiornamenti live via Supabase Realtime, push notification per partita, dashboard admin, GTM analytics.',
         'skills.label':        'Competenze',
         'skills.hint':         'seleziona per filtrare i progetti',
         'footer.copy':         '© 2025 Diego Randazzo — Tutti i contenuti presenti sono stati generati con AI',
