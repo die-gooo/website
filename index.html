@@ -258,7 +258,6 @@
     .radar-label-text.is-active { fill: var(--ink); }
 
     /* SKILL TAGS */
-    .skills-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; flex: 1; }
     .skill-tag {
       font-family: 'Barlow', sans-serif; font-size: 0.72rem; font-weight: 400;
       letter-spacing: 0.06em; color: var(--muted);
@@ -457,17 +456,19 @@
       .timeline-h-item { padding-right: 0; padding-bottom: 2rem; padding-top: 0; }
       .timeline-h-item:last-child { padding-bottom: 0; }
       .timeline-h-item::before { top: 0; left: -1.8rem; transform: none; }
+      .project-card { min-width: 100%; }
+      .projects-track { gap: 0; }
     }
 
     /* PROJECT SLIDER */
     .projects-slider { overflow: hidden; }
     .projects-track {
-      display: flex;
+      display: flex; gap: 1rem;
       transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
       will-change: transform;
     }
     .project-card {
-      min-width: 100%; padding: 2rem;
+      min-width: calc(50% - 0.5rem); flex-shrink: 0; padding: 2rem;
       border: 1px solid rgba(var(--ink-rgb),0.1); border-radius: 0.75rem;
       display: flex; flex-direction: column; gap: 0.75rem;
       transition: border-color 0.35s;
@@ -500,6 +501,60 @@
       transition: color 0.2s;
     }
     .card-link:hover { color: var(--ink); }
+    button.card-link { background: none; text-align: left; }
+    .card-icon { color: var(--accent); margin-bottom: 0.5rem; opacity: 0.9; }
+    .card-icon svg { display: block; }
+
+    /* ACCESS MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(var(--ink-rgb), 0.45);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--bg); border: 1px solid rgba(var(--ink-rgb),0.12);
+      border-radius: 0.75rem; padding: 2rem;
+      max-width: 380px; width: calc(100% - 3rem);
+      position: relative;
+      transform: translateY(10px);
+      transition: transform 0.25s ease;
+    }
+    .modal-overlay.open .modal-box { transform: translateY(0); }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1rem;
+      font-size: 1.1rem; color: var(--muted); background: none; border: none;
+      cursor: pointer; line-height: 1; padding: 0.2rem 0.4rem;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--ink); }
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem;
+      letter-spacing: 0.04em; color: var(--ink); margin-bottom: 0.4rem;
+    }
+    .modal-desc {
+      font-family: 'Barlow', sans-serif; font-size: 0.8rem; font-weight: 400;
+      color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem;
+    }
+    .modal-input {
+      width: 100%; font-family: 'Barlow', sans-serif; font-size: 0.85rem;
+      color: var(--ink); background: var(--bg);
+      border: 1px solid rgba(var(--ink-rgb),0.15); border-radius: 4px;
+      padding: 0.6rem 0.85rem; margin-bottom: 0.75rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .modal-input:focus { border-color: var(--accent); }
+    .modal-submit {
+      width: 100%; font-family: 'Barlow', sans-serif; font-size: 0.72rem;
+      font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      background: var(--ink); color: var(--bg); border: none;
+      padding: 0.65rem; border-radius: 4px; cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .modal-submit:hover { opacity: 0.8; }
     .slider-controls { display: flex; align-items: center; gap: 0.75rem; }
     .slider-btn {
       font-family: 'Barlow', sans-serif; font-size: 0.85rem; line-height: 1;
@@ -613,81 +668,74 @@
           <div class="projects-track" id="projects-track">
 
             <div class="project-card" data-skills="frontend,gtm,analytics">
+              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg></div>
               <div class="card-year">2026</div>
               <div class="card-title" data-i18n="project.alpha.title">diegorandazzo.ooo</div>
               <div class="card-desc" data-i18n="project.alpha.desc">This portfolio — static site in vanilla HTML, CSS &amp; JS with a custom GTM event-tracking layer and schema.org structured data for AI search.</div>
-              <div class="card-tags">
-                <span>Frontend</span><span>GTM</span><span>Analytics</span>
-              </div>
-              <a class="card-link" href="https://github.com/die-gooo/website" target="_blank" rel="noopener">↗ GitHub</a>
+              <div class="card-tags"><span>Frontend</span><span>GTM</span><span>Analytics</span></div>
             </div>
 
             <div class="project-card" data-skills="gtm,analytics,frontend">
+              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l-5 5 5 5"/><path d="M17 7l5 5-5 5"/><path d="M14 3l-4 18"/></svg></div>
               <div class="card-year">2024</div>
               <div class="card-title" data-i18n="project.beta.title">GTM Attribution Engine</div>
               <div class="card-desc" data-i18n="project.beta.desc">Custom e-commerce attribution system built in GTM (JS + LocalStorage) to track conversion rate and revenue from a third-party product recommendation widget.</div>
-              <div class="card-tags">
-                <span>GTM</span><span>Analytics</span><span>Frontend</span>
-              </div>
+              <div class="card-tags"><span>GTM</span><span>Analytics</span><span>JS</span></div>
+              <button class="card-link" onclick="openAccessModal('GTM Attribution Engine')" data-i18n="project.cta.access">↗ Request Access</button>
             </div>
 
             <div class="project-card" data-skills="cro,dataviz,analytics">
+              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><path d="M2 20h20"/></svg></div>
               <div class="card-year">2025</div>
               <div class="card-title" data-i18n="project.gamma.title">CRO Reporting Suite</div>
               <div class="card-desc" data-i18n="project.gamma.desc">Advanced Looker Studio dashboards for funnel KPIs, market trends and campaign performance — built for enterprise retail and travel clients.</div>
-              <div class="card-tags">
-                <span>CRO</span><span>Looker Studio</span><span>Analytics</span>
-              </div>
+              <div class="card-tags"><span>CRO</span><span>Looker Studio</span><span>Analytics</span></div>
+              <button class="card-link" onclick="openAccessModal('CRO Reporting Suite')" data-i18n="project.cta.access">↗ Request Access</button>
             </div>
 
             <div class="project-card" data-skills="frontend,ai">
+              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
               <div class="card-year">2025</div>
               <div class="card-title" data-i18n="project.eemage.title">Eemage</div>
               <div class="card-desc" data-i18n="project.eemage.desc">Browser image tool — merge, crop and annotate images side by side with arrows, shapes and text. No login, no upload, exports as PNG instantly.</div>
-              <div class="card-tags">
-                <span>Frontend</span><span>Canvas API</span><span>AI & Tools</span>
-              </div>
-              <a class="card-link" href="https://github.com/die-gooo/eemage" target="_blank" rel="noopener">↗ GitHub</a>
+              <div class="card-tags"><span>Frontend</span><span>Canvas API</span><span>AI & Tools</span></div>
+              <a class="card-link" href="https://eemage.app/" target="_blank" rel="noopener">↗ eemage.app</a>
             </div>
 
             <div class="project-card" data-skills="frontend,sql">
+              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
               <div class="card-year">2025</div>
               <div class="card-title" data-i18n="project.dinnervote.title">Dinner Vote</div>
               <div class="card-desc" data-i18n="project.dinnervote.desc">React app for a group of friends to vote and rank restaurant evenings. Firebase Realtime DB, avatar login, category sliders, live leaderboard.</div>
-              <div class="card-tags">
-                <span>React</span><span>Firebase</span><span>Tailwind</span>
-              </div>
-              <a class="card-link" href="https://github.com/die-gooo/v1_quiz" target="_blank" rel="noopener">↗ GitHub</a>
+              <div class="card-tags"><span>React</span><span>Firebase</span><span>Tailwind</span></div>
+              <button class="card-link" onclick="openAccessModal('Dinner Vote')" data-i18n="project.cta.access">↗ Request Access</button>
             </div>
 
             <div class="project-card" data-skills="frontend,ai">
+              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
               <div class="card-year">2026</div>
               <div class="card-title" data-i18n="project.cityvibe.title">CityVibe</div>
               <div class="card-desc" data-i18n="project.cityvibe.desc">Landing MVP — full-screen POV video background with Spotify embed. Built with Next.js, Vercel Blob and KV.</div>
-              <div class="card-tags">
-                <span>Next.js</span><span>TypeScript</span><span>Vercel</span>
-              </div>
-              <a class="card-link" href="https://github.com/die-gooo/vibeCity" target="_blank" rel="noopener">↗ GitHub</a>
+              <div class="card-tags"><span>Next.js</span><span>TypeScript</span><span>Vercel</span></div>
+              <a class="card-link" href="https://cityvibe.space/" target="_blank" rel="noopener">↗ cityvibe.space</a>
             </div>
 
             <div class="project-card" data-skills="frontend,sql,ai">
+              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
               <div class="card-year">2025</div>
               <div class="card-title" data-i18n="project.livescore.title">Livescore Jules</div>
               <div class="card-desc" data-i18n="project.livescore.desc">Real-time futsal scoreboard for Italian Serie C1. Live updates via Supabase Realtime, push notifications per match, admin dashboard, GTM analytics.</div>
-              <div class="card-tags">
-                <span>Next.js</span><span>Supabase</span><span>GTM</span><span>Push API</span>
-              </div>
-              <a class="card-link" href="https://github.com/die-gooo/livescore-jules" target="_blank" rel="noopener">↗ GitHub</a>
+              <div class="card-tags"><span>Next.js</span><span>Supabase</span><span>GTM</span></div>
+              <button class="card-link" onclick="openAccessModal('Livescore Jules')" data-i18n="project.cta.access">↗ Request Access</button>
             </div>
 
             <div class="project-card" data-skills="sql,ai,frontend">
+              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
               <div class="card-year">2026</div>
               <div class="card-title" data-i18n="project.geofascicolo.title">GeoFascicolo</div>
               <div class="card-desc" data-i18n="project.geofascicolo.desc">Python FastAPI backend for automatic generation of the Fascicolo Tecnico Preliminare. Aggregates seismic, flood-risk, cadastral and real-estate data from Italian public government APIs.</div>
-              <div class="card-tags">
-                <span>Python</span><span>FastAPI</span><span>Open Data</span>
-              </div>
-              <a class="card-link" href="https://github.com/die-gooo/geofascicolo" target="_blank" rel="noopener">↗ GitHub</a>
+              <div class="card-tags"><span>Python</span><span>FastAPI</span><span>Open Data</span></div>
+              <button class="card-link" onclick="openAccessModal('GeoFascicolo')" data-i18n="project.cta.access">↗ Request Access</button>
             </div>
 
           </div>
@@ -706,7 +754,6 @@
           <div class="radar-container">
             <svg id="radar-chart" viewBox="0 0 280 280" width="260" height="260"></svg>
           </div>
-          <div class="skills-tags" id="skills-tags"></div>
         </div>
         <div class="skills-panel" id="skills-panel" aria-hidden="true">
           <div class="skills-panel-inner" id="skills-panel-inner"></div>
@@ -816,16 +863,6 @@
       svg.appendChild(txt);
     });
 
-    /* ── Build tag pills ── */
-    var tagsEl = document.getElementById('skills-tags');
-    SKILLS.forEach(function (s) {
-      var span = document.createElement('span');
-      span.className = 'skill-tag';
-      span.dataset.skill = s.slug;
-      span.textContent = s.name;
-      tagsEl.appendChild(span);
-    });
-
     /* ── Slider (defined before panel so goTo is available to panel clicks) ── */
     var track   = document.getElementById('projects-track');
     var cards   = track ? Array.from(track.querySelectorAll('.project-card')) : [];
@@ -840,18 +877,19 @@
           var dot   = document.getElementById('dot-'   + s.slug);
           var label = document.getElementById('label-' + s.slug);
           var axis  = document.getElementById('axis-'  + s.slug);
-          var tag   = tagsEl.querySelector('[data-skill="' + s.slug + '"]');
           if (dot)   dot.setAttribute('r', on ? '5' : '3');
           if (label) label.classList.toggle('is-active', on);
           if (axis)  axis.classList.toggle('is-active', on);
-          if (tag)   tag.classList.toggle('active', on);
         }, i * 40);
       });
     }
 
     function goTo(idx) {
       current = (idx + cards.length) % cards.length;
-      if (track) track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      if (track && cards.length) {
+        var gap = parseFloat(window.getComputedStyle(track).columnGap) || parseFloat(window.getComputedStyle(track).gap) || 0;
+        track.style.transform = 'translateX(-' + (current * (cards[0].offsetWidth + gap)) + 'px)';
+      }
       cards.forEach(function (c, i) { c.classList.toggle('is-active', i === current); });
       if (counter) counter.textContent = (current + 1) + ' / ' + cards.length;
       var slugs = cards[current] ? (cards[current].dataset.skills || '').split(',') : [];
@@ -880,16 +918,7 @@
       });
     }
 
-    /* Skill tag pill click → navigate to first matching project */
-    tagsEl.addEventListener('click', function (e) {
-      var tag = e.target.closest('.skill-tag');
-      if (!tag) return;
-      var idx = findCardWithSkill(tag.dataset.skill);
-      if (idx !== -1) {
-        goTo(idx);
-        document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+    window.addEventListener('resize', function () { goTo(current); }, { passive: true });
 
     /* ── Build "All Skills" panel ── */
     var panelInner = document.getElementById('skills-panel-inner');
@@ -1055,6 +1084,9 @@
         'project.geofascicolo.desc':   'Python FastAPI backend for automatic generation of the Fascicolo Tecnico Preliminare. Aggregates seismic, flood-risk, cadastral and real-estate data from Italian public government APIs.',
         'skills.label':        'Skills',
         'skills.hint':         'select to filter projects',
+        'modal.desc':          'Leave your email and I\'ll get back to you with access.',
+        'modal.submit':        'Request Access →',
+        'project.cta.access':  '↗ Request Access',
         'footer.copy':         '© 2025 Diego Randazzo — All content generated with AI',
       },
       it: {
@@ -1091,6 +1123,9 @@
         'project.geofascicolo.desc':   'Backend Python FastAPI per la generazione automatica del Fascicolo Tecnico Preliminare. Aggrega dati sismici, idrogeologici, catastali e quotazioni OMI da API pubbliche italiane.',
         'skills.label':        'Competenze',
         'skills.hint':         'seleziona per filtrare i progetti',
+        'modal.desc':          'Lascia la tua email e ti rispondo con l\'accesso.',
+        'modal.submit':        'Richiedi Accesso →',
+        'project.cta.access':  '↗ Richiedi Accesso',
         'footer.copy':         '© 2025 Diego Randazzo — Tutti i contenuti presenti sono stati generati con AI',
       }
     };
@@ -1153,5 +1188,64 @@
     <a href="#skills">Skills</a>
   </nav>
 
+
+  <!-- Access Request Modal -->
+  <div class="modal-overlay" id="access-modal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-project-name">
+      <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+      <div class="modal-title" id="modal-project-name"></div>
+      <p class="modal-desc" data-i18n="modal.desc">Leave your email and I'll get back to you with access.</p>
+      <form class="modal-form" id="access-form" novalidate>
+        <input type="email" class="modal-input" id="modal-email" placeholder="your@email.com" autocomplete="email" required />
+        <button type="submit" class="modal-submit" data-i18n="modal.submit">Request Access →</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var overlay  = document.getElementById('access-modal');
+    var nameEl   = document.getElementById('modal-project-name');
+    var closeBtn = document.getElementById('modal-close');
+    var form     = document.getElementById('access-form');
+    var emailEl  = document.getElementById('modal-email');
+    var projectName = '';
+
+    function openModal(name) {
+      projectName = name;
+      if (nameEl) nameEl.textContent = name;
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      setTimeout(function () { if (emailEl) emailEl.focus(); }, 50);
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+      if (emailEl) emailEl.value = '';
+    }
+
+    window.openAccessModal = openModal;
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = emailEl ? emailEl.value.trim() : '';
+        if (!email) return;
+        if (window.dataLayer) {
+          window.dataLayer.push({ event: 'access_request', project: projectName, email: email });
+        }
+        var subject = encodeURIComponent('Access request: ' + projectName);
+        var body    = encodeURIComponent('Hi Diego,\n\nI would like to request access to "' + projectName + '".\n\nMy email: ' + email);
+        window.location.href = 'mailto:diegorandazzo00@gmail.com?subject=' + subject + '&body=' + body;
+        closeModal();
+      });
+    }
+  }());
+  </script>
 </body>
 </html>
