@@ -456,24 +456,25 @@
       .timeline-h-item { padding-right: 0; padding-bottom: 2rem; padding-top: 0; }
       .timeline-h-item:last-child { padding-bottom: 0; }
       .timeline-h-item::before { top: 0; left: -1.8rem; transform: none; }
-      .project-card { min-width: 100%; }
-      .projects-track { gap: 0; }
+      .project-card { padding: 1.25rem; gap: 1.25rem; }
+      .card-icon { width: 36px; height: 36px; }
     }
 
     /* PROJECT SLIDER */
     .projects-slider { overflow: hidden; }
     .projects-track {
-      display: flex; gap: 1rem;
+      display: flex; gap: 0;
       transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
       will-change: transform;
     }
     .project-card {
-      min-width: calc(50% - 0.5rem); flex-shrink: 0; padding: 2rem;
+      min-width: 100%; flex-shrink: 0; padding: 2rem;
       border: 1px solid rgba(var(--ink-rgb),0.1); border-radius: 0.75rem;
-      display: flex; flex-direction: column; gap: 0.75rem;
+      display: flex; flex-direction: row; align-items: flex-start; gap: 2.5rem;
       transition: border-color 0.35s;
     }
     .project-card.is-active { border-color: rgba(var(--accent-rgb),0.4); }
+    .card-body { flex: 1; display: flex; flex-direction: column; gap: 0.75rem; }
     .card-year {
       font-family: 'Barlow', sans-serif; font-size: 0.65rem;
       letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase;
@@ -502,7 +503,11 @@
     }
     .card-link:hover { color: var(--ink); }
     button.card-link { background: none; text-align: left; }
-    .card-icon { color: var(--accent); margin-bottom: 0.5rem; opacity: 0.9; }
+    .card-icon {
+      flex-shrink: 0; color: var(--accent); opacity: 0.6;
+      width: 56px; height: 56px;
+      display: flex; align-items: flex-start; justify-content: flex-end;
+    }
     .card-icon svg { display: block; }
 
     /* ACCESS MODAL */
@@ -668,74 +673,90 @@
           <div class="projects-track" id="projects-track">
 
             <div class="project-card" data-skills="frontend,gtm,analytics">
-              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg></div>
-              <div class="card-year">2026</div>
-              <div class="card-title" data-i18n="project.alpha.title">diegorandazzo.ooo</div>
-              <div class="card-desc" data-i18n="project.alpha.desc">This portfolio — static site in vanilla HTML, CSS &amp; JS with a custom GTM event-tracking layer and schema.org structured data for AI search.</div>
-              <div class="card-tags"><span>Frontend</span><span>GTM</span><span>Analytics</span></div>
+              <div class="card-body">
+                <div class="card-year">2026</div>
+                <div class="card-title" data-i18n="project.alpha.title">diegorandazzo.ooo</div>
+                <div class="card-desc" data-i18n="project.alpha.desc">This portfolio — static site in vanilla HTML, CSS &amp; JS with a custom GTM event-tracking layer and schema.org structured data for AI search.</div>
+                <div class="card-tags"><span>Frontend</span><span>GTM</span><span>Analytics</span></div>
+              </div>
+              <div class="card-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg></div>
             </div>
 
             <div class="project-card" data-skills="gtm,analytics,frontend">
-              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l-5 5 5 5"/><path d="M17 7l5 5-5 5"/><path d="M14 3l-4 18"/></svg></div>
-              <div class="card-year">2024</div>
-              <div class="card-title" data-i18n="project.beta.title">GTM Attribution Engine</div>
-              <div class="card-desc" data-i18n="project.beta.desc">Custom e-commerce attribution system built in GTM (JS + LocalStorage) to track conversion rate and revenue from a third-party product recommendation widget.</div>
-              <div class="card-tags"><span>GTM</span><span>Analytics</span><span>JS</span></div>
-              <button class="card-link" onclick="openAccessModal('GTM Attribution Engine')" data-i18n="project.cta.access">↗ Request Access</button>
+              <div class="card-body">
+                <div class="card-year">2024</div>
+                <div class="card-title" data-i18n="project.beta.title">GTM Attribution Engine</div>
+                <div class="card-desc" data-i18n="project.beta.desc">Custom e-commerce attribution system built in GTM (JS + LocalStorage) to track conversion rate and revenue from a third-party product recommendation widget.</div>
+                <div class="card-tags"><span>GTM</span><span>Analytics</span><span>JS</span></div>
+                <button class="card-link" onclick="openAccessModal('GTM Attribution Engine')" data-i18n="project.cta.access">↗ Request Access</button>
+              </div>
+              <div class="card-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l-5 5 5 5"/><path d="M17 7l5 5-5 5"/><path d="M14 3l-4 18"/></svg></div>
             </div>
 
             <div class="project-card" data-skills="cro,dataviz,analytics">
-              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><path d="M2 20h20"/></svg></div>
-              <div class="card-year">2025</div>
-              <div class="card-title" data-i18n="project.gamma.title">CRO Reporting Suite</div>
-              <div class="card-desc" data-i18n="project.gamma.desc">Advanced Looker Studio dashboards for funnel KPIs, market trends and campaign performance — built for enterprise retail and travel clients.</div>
-              <div class="card-tags"><span>CRO</span><span>Looker Studio</span><span>Analytics</span></div>
-              <button class="card-link" onclick="openAccessModal('CRO Reporting Suite')" data-i18n="project.cta.access">↗ Request Access</button>
+              <div class="card-body">
+                <div class="card-year">2025</div>
+                <div class="card-title" data-i18n="project.gamma.title">CRO Reporting Suite</div>
+                <div class="card-desc" data-i18n="project.gamma.desc">Advanced Looker Studio dashboards for funnel KPIs, market trends and campaign performance — built for enterprise retail and travel clients.</div>
+                <div class="card-tags"><span>CRO</span><span>Looker Studio</span><span>Analytics</span></div>
+                <button class="card-link" onclick="openAccessModal('CRO Reporting Suite')" data-i18n="project.cta.access">↗ Request Access</button>
+              </div>
+              <div class="card-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><path d="M2 20h20"/></svg></div>
             </div>
 
             <div class="project-card" data-skills="frontend,ai">
-              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-              <div class="card-year">2025</div>
-              <div class="card-title" data-i18n="project.eemage.title">Eemage</div>
-              <div class="card-desc" data-i18n="project.eemage.desc">Browser image tool — merge, crop and annotate images side by side with arrows, shapes and text. No login, no upload, exports as PNG instantly.</div>
-              <div class="card-tags"><span>Frontend</span><span>Canvas API</span><span>AI & Tools</span></div>
-              <a class="card-link" href="https://eemage.app/" target="_blank" rel="noopener">↗ eemage.app</a>
+              <div class="card-body">
+                <div class="card-year">2025</div>
+                <div class="card-title" data-i18n="project.eemage.title">Eemage</div>
+                <div class="card-desc" data-i18n="project.eemage.desc">Browser image tool — merge, crop and annotate images side by side with arrows, shapes and text. No login, no upload, exports as PNG instantly.</div>
+                <div class="card-tags"><span>Frontend</span><span>Canvas API</span><span>AI & Tools</span></div>
+                <a class="card-link" href="https://eemage.app/" target="_blank" rel="noopener">↗ eemage.app</a>
+              </div>
+              <div class="card-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
             </div>
 
             <div class="project-card" data-skills="frontend,sql">
-              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-              <div class="card-year">2025</div>
-              <div class="card-title" data-i18n="project.dinnervote.title">Dinner Vote</div>
-              <div class="card-desc" data-i18n="project.dinnervote.desc">React app for a group of friends to vote and rank restaurant evenings. Firebase Realtime DB, avatar login, category sliders, live leaderboard.</div>
-              <div class="card-tags"><span>React</span><span>Firebase</span><span>Tailwind</span></div>
-              <button class="card-link" onclick="openAccessModal('Dinner Vote')" data-i18n="project.cta.access">↗ Request Access</button>
+              <div class="card-body">
+                <div class="card-year">2025</div>
+                <div class="card-title" data-i18n="project.dinnervote.title">Dinner Vote</div>
+                <div class="card-desc" data-i18n="project.dinnervote.desc">React app for a group of friends to vote and rank restaurant evenings. Firebase Realtime DB, avatar login, category sliders, live leaderboard.</div>
+                <div class="card-tags"><span>React</span><span>Firebase</span><span>Tailwind</span></div>
+                <button class="card-link" onclick="openAccessModal('Dinner Vote')" data-i18n="project.cta.access">↗ Request Access</button>
+              </div>
+              <div class="card-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
             </div>
 
             <div class="project-card" data-skills="frontend,ai">
-              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
-              <div class="card-year">2026</div>
-              <div class="card-title" data-i18n="project.cityvibe.title">CityVibe</div>
-              <div class="card-desc" data-i18n="project.cityvibe.desc">Landing MVP — full-screen POV video background with Spotify embed. Built with Next.js, Vercel Blob and KV.</div>
-              <div class="card-tags"><span>Next.js</span><span>TypeScript</span><span>Vercel</span></div>
-              <a class="card-link" href="https://cityvibe.space/" target="_blank" rel="noopener">↗ cityvibe.space</a>
+              <div class="card-body">
+                <div class="card-year">2026</div>
+                <div class="card-title" data-i18n="project.cityvibe.title">CityVibe</div>
+                <div class="card-desc" data-i18n="project.cityvibe.desc">Landing MVP — full-screen POV video background with Spotify embed. Built with Next.js, Vercel Blob and KV.</div>
+                <div class="card-tags"><span>Next.js</span><span>TypeScript</span><span>Vercel</span></div>
+                <a class="card-link" href="https://cityvibe.space/" target="_blank" rel="noopener">↗ cityvibe.space</a>
+              </div>
+              <div class="card-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
             </div>
 
             <div class="project-card" data-skills="frontend,sql,ai">
-              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-              <div class="card-year">2025</div>
-              <div class="card-title" data-i18n="project.livescore.title">Livescore Jules</div>
-              <div class="card-desc" data-i18n="project.livescore.desc">Real-time futsal scoreboard for Italian Serie C1. Live updates via Supabase Realtime, push notifications per match, admin dashboard, GTM analytics.</div>
-              <div class="card-tags"><span>Next.js</span><span>Supabase</span><span>GTM</span></div>
-              <button class="card-link" onclick="openAccessModal('Livescore Jules')" data-i18n="project.cta.access">↗ Request Access</button>
+              <div class="card-body">
+                <div class="card-year">2025</div>
+                <div class="card-title" data-i18n="project.livescore.title">Livescore Jules</div>
+                <div class="card-desc" data-i18n="project.livescore.desc">Real-time futsal scoreboard for Italian Serie C1. Live updates via Supabase Realtime, push notifications per match, admin dashboard, GTM analytics.</div>
+                <div class="card-tags"><span>Next.js</span><span>Supabase</span><span>GTM</span></div>
+                <button class="card-link" onclick="openAccessModal('Livescore Jules')" data-i18n="project.cta.access">↗ Request Access</button>
+              </div>
+              <div class="card-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
             </div>
 
             <div class="project-card" data-skills="sql,ai,frontend">
-              <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-              <div class="card-year">2026</div>
-              <div class="card-title" data-i18n="project.geofascicolo.title">GeoFascicolo</div>
-              <div class="card-desc" data-i18n="project.geofascicolo.desc">Python FastAPI backend for automatic generation of the Fascicolo Tecnico Preliminare. Aggregates seismic, flood-risk, cadastral and real-estate data from Italian public government APIs.</div>
-              <div class="card-tags"><span>Python</span><span>FastAPI</span><span>Open Data</span></div>
-              <button class="card-link" onclick="openAccessModal('GeoFascicolo')" data-i18n="project.cta.access">↗ Request Access</button>
+              <div class="card-body">
+                <div class="card-year">2026</div>
+                <div class="card-title" data-i18n="project.geofascicolo.title">GeoFascicolo</div>
+                <div class="card-desc" data-i18n="project.geofascicolo.desc">Python FastAPI backend for automatic generation of the Fascicolo Tecnico Preliminare. Aggregates seismic, flood-risk, cadastral and real-estate data from Italian public government APIs.</div>
+                <div class="card-tags"><span>Python</span><span>FastAPI</span><span>Open Data</span></div>
+                <button class="card-link" onclick="openAccessModal('GeoFascicolo')" data-i18n="project.cta.access">↗ Request Access</button>
+              </div>
+              <div class="card-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
             </div>
 
           </div>
