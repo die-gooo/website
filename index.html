@@ -102,6 +102,7 @@
 
     :root {
       --bg:         #ffffff;
+      --bg-rgb:     255, 255, 255;
       --ink:        #111111;
       --ink-rgb:    17, 17, 17;
       --accent:     #7c3aed;
@@ -111,6 +112,7 @@
 
     [data-theme="dark"] {
       --bg:         #0d0d0d;
+      --bg-rgb:     13, 13, 13;
       --ink:        #f0eeec;
       --ink-rgb:    240, 238, 236;
       --accent:     #a78bfa;
@@ -144,7 +146,8 @@
     .navbar-links a:hover { color: var(--ink); }
 
     /* HERO */
-    .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; padding: 4rem 0; }
+    .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; padding: 4rem 0 1.5rem; }
+    #work { padding-top: 1rem; }
     .hero-label {
       font-family: 'Barlow', sans-serif; font-size: 0.68rem; font-weight: 500;
       letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem;
@@ -179,7 +182,7 @@
       100% { opacity: 1; transform: translateY(0); }
     }
     .slot.ticking { animation: slot-tick 0.2s ease-out both; }
-    .slot.landing { animation: slot-land 0.45s cubic-bezier(0.22,1,0.36,1) both; }
+    .slot.landing { animation: slot-land 0.32s cubic-bezier(0.22,1,0.36,1) both; }
     .hero-bio {
       font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 400;
       line-height: 1.85; color: var(--muted); max-width: 480px; margin-bottom: 2.5rem;
@@ -250,7 +253,7 @@
     .radar-axis-line  { stroke: rgba(var(--ink-rgb),0.1); stroke-width: 1; transition: stroke 0.3s, stroke-width 0.3s; }
     .radar-axis-line.is-active  { stroke: var(--accent); stroke-width: 1.5; }
     .radar-poly       { fill: rgba(var(--accent-rgb),0.08); stroke: var(--accent); stroke-width: 1.5; }
-    .radar-dot        { fill: var(--accent); }
+    .radar-dot        { fill: var(--accent); transition: r 0.3s ease; }
     .radar-label-text { fill: var(--muted); cursor: pointer; user-select: none; transition: fill 0.25s; }
     .radar-label-text.is-active { fill: var(--ink); }
 
@@ -420,9 +423,32 @@
       display: flex; flex-wrap: wrap; gap: 1.5rem;
     }
     .skill-entry { display: flex; flex-direction: column; gap: 0.35rem; min-width: 90px; }
+    .skill-entry.has-projects { cursor: pointer; }
+    .skill-entry.has-projects:hover .skill-tag { border-color: var(--accent); color: var(--accent); }
     .skill-entry-projects {
       font-family: 'Barlow', sans-serif; font-size: 0.6rem;
       color: var(--muted); line-height: 1.6; letter-spacing: 0.03em;
+    }
+
+    /* MOBILE STICKY NAV */
+    .mobile-nav { display: none; }
+    @media (max-width: 600px) {
+      .mobile-nav {
+        display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+        background: rgba(var(--bg-rgb), 0.92);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(var(--ink-rgb), 0.08);
+        justify-content: space-around; align-items: center;
+        padding: 0.8rem 0 calc(0.8rem + env(safe-area-inset-bottom));
+      }
+      .mobile-nav a {
+        font-family: 'Barlow', sans-serif; font-size: 0.6rem; font-weight: 500;
+        letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--muted); text-decoration: none;
+        padding: 0.2rem 1rem; transition: color 0.2s;
+      }
+      .mobile-nav a:hover, .mobile-nav a.is-active { color: var(--accent); }
+      body { padding-bottom: 4.5rem; }
     }
 
     @media (max-width: 600px) {
@@ -534,8 +560,7 @@
         <div class="timeline-h" id="work-list">
 
           <div class="timeline-h-item">
-            <div class="timeline-h-company" data-i18n="work.item1.title">Merkle Italia</div>
-            <div class="timeline-h-role">Sr. Digital Analytics &amp; CRO Specialist</div>
+            <div class="timeline-h-role">Sr. Digital Analytics &amp; CRO</div>
             <div class="timeline-h-period">2024 — present</div>
             <div class="timeline-h-tools">
               <span class="timeline-h-tool">GTM</span>
@@ -548,7 +573,6 @@
           </div>
 
           <div class="timeline-h-item">
-            <div class="timeline-h-company" data-i18n="work.item2.title">Intarget srl</div>
             <div class="timeline-h-role">Data Analyst</div>
             <div class="timeline-h-period">2022 — 2024</div>
             <div class="timeline-h-tools">
@@ -561,7 +585,6 @@
           </div>
 
           <div class="timeline-h-item">
-            <div class="timeline-h-company" data-i18n="work.item3.title">Dibix srl</div>
             <div class="timeline-h-role">Web Developer</div>
             <div class="timeline-h-period">2020 — 2022</div>
             <div class="timeline-h-tools">
@@ -643,7 +666,7 @@
     </main>
 
     <footer>
-      <span class="footer-copy" data-i18n="footer.copy">© 2026 Diego Randazzo.</span>
+      <span class="footer-copy" data-i18n="footer.copy">© 2025 Diego Randazzo — Tutti i contenuti presenti sono stati generati con AI</span>
       <div class="footer-links">
         <a href="mailto:diegorandazzo00@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/diegorandazzo" target="_blank" rel="noopener">LinkedIn</a>
@@ -753,57 +776,28 @@
       tagsEl.appendChild(span);
     });
 
-    /* ── Build "All Skills" panel ── */
-    var panelInner = document.getElementById('skills-panel-inner');
-    if (panelInner) {
-      SKILLS.forEach(function (s) {
-        var entry = document.createElement('div');
-        entry.className = 'skill-entry';
-        var pill = document.createElement('span');
-        pill.className = 'skill-tag';
-        pill.textContent = s.name;
-        entry.appendChild(pill);
-        var projs = SKILL_PROJECTS[s.slug] || [];
-        var projEl = document.createElement('div');
-        projEl.className = 'skill-entry-projects';
-        projEl.textContent = projs.length ? projs.join('\n') : '—';
-        projEl.style.whiteSpace = 'pre-line';
-        entry.appendChild(projEl);
-        panelInner.appendChild(entry);
-      });
-    }
-
-    /* ── Toggle All Skills panel ── */
-    var expandBtn = document.getElementById('skills-expand-btn');
-    var panel     = document.getElementById('skills-panel');
-    if (expandBtn && panel) {
-      expandBtn.addEventListener('click', function () {
-        var open = panel.classList.toggle('open');
-        expandBtn.setAttribute('aria-expanded', open);
-        panel.setAttribute('aria-hidden', !open);
-      });
-    }
-
-    /* ── Skill highlight (driven by active project) ── */
-    function setSkills(slugs) {
-      SKILLS.forEach(function (s) {
-        var on    = slugs.indexOf(s.slug) !== -1;
-        var dot   = document.getElementById('dot-'   + s.slug);
-        var label = document.getElementById('label-' + s.slug);
-        var axis  = document.getElementById('axis-'  + s.slug);
-        var tag   = tagsEl.querySelector('[data-skill="' + s.slug + '"]');
-        if (dot)   dot.setAttribute('r', on ? '5' : '3');
-        if (label) label.classList.toggle('is-active', on);
-        if (axis)  axis.classList.toggle('is-active', on);
-        if (tag)   tag.classList.toggle('active', on);
-      });
-    }
-
-    /* ── Slider ── */
+    /* ── Slider (defined before panel so goTo is available to panel clicks) ── */
     var track   = document.getElementById('projects-track');
     var cards   = track ? Array.from(track.querySelectorAll('.project-card')) : [];
     var counter = document.getElementById('slider-counter');
     var current = 0;
+
+    /* Staggered skill highlight — cascades around the radar */
+    function setSkills(slugs) {
+      SKILLS.forEach(function (s, i) {
+        setTimeout(function () {
+          var on    = slugs.indexOf(s.slug) !== -1;
+          var dot   = document.getElementById('dot-'   + s.slug);
+          var label = document.getElementById('label-' + s.slug);
+          var axis  = document.getElementById('axis-'  + s.slug);
+          var tag   = tagsEl.querySelector('[data-skill="' + s.slug + '"]');
+          if (dot)   dot.setAttribute('r', on ? '5' : '3');
+          if (label) label.classList.toggle('is-active', on);
+          if (axis)  axis.classList.toggle('is-active', on);
+          if (tag)   tag.classList.toggle('active', on);
+        }, i * 40);
+      });
+    }
 
     function goTo(idx) {
       current = (idx + cards.length) % cards.length;
@@ -812,6 +806,14 @@
       if (counter) counter.textContent = (current + 1) + ' / ' + cards.length;
       var slugs = cards[current] ? (cards[current].dataset.skills || '').split(',') : [];
       setSkills(slugs);
+    }
+
+    /* Find first project card containing a given skill slug */
+    function findCardWithSkill(slug) {
+      for (var i = 0; i < cards.length; i++) {
+        if ((cards[i].dataset.skills || '').split(',').indexOf(slug) !== -1) return i;
+      }
+      return -1;
     }
 
     var prevBtn = document.querySelector('.slider-prev');
@@ -828,6 +830,63 @@
       });
     }
 
+    /* Skill tag pill click → navigate to first matching project */
+    tagsEl.addEventListener('click', function (e) {
+      var tag = e.target.closest('.skill-tag');
+      if (!tag) return;
+      var idx = findCardWithSkill(tag.dataset.skill);
+      if (idx !== -1) {
+        goTo(idx);
+        document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    /* ── Build "All Skills" panel ── */
+    var panelInner = document.getElementById('skills-panel-inner');
+    if (panelInner) {
+      SKILLS.forEach(function (s) {
+        var projs = SKILL_PROJECTS[s.slug] || [];
+        var entry = document.createElement('div');
+        entry.className = 'skill-entry' + (projs.length ? ' has-projects' : '');
+        entry.dataset.skill = s.slug;
+        var pill = document.createElement('span');
+        pill.className = 'skill-tag';
+        pill.textContent = s.name;
+        entry.appendChild(pill);
+        var projEl = document.createElement('div');
+        projEl.className = 'skill-entry-projects';
+        projEl.textContent = projs.length ? projs.join('\n') : '—';
+        projEl.style.whiteSpace = 'pre-line';
+        entry.appendChild(projEl);
+        panelInner.appendChild(entry);
+      });
+
+      /* Panel skill entry click → navigate to first matching project + close panel */
+      panelInner.addEventListener('click', function (e) {
+        var entry = e.target.closest('.skill-entry.has-projects');
+        if (!entry) return;
+        var idx = findCardWithSkill(entry.dataset.skill);
+        if (idx === -1) return;
+        goTo(idx);
+        var panel = document.getElementById('skills-panel');
+        var btn   = document.getElementById('skills-expand-btn');
+        if (panel) { panel.classList.remove('open'); panel.setAttribute('aria-hidden', 'true'); }
+        if (btn)   btn.setAttribute('aria-expanded', 'false');
+        document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    /* ── Toggle All Skills panel ── */
+    var expandBtn = document.getElementById('skills-expand-btn');
+    var panel     = document.getElementById('skills-panel');
+    if (expandBtn && panel) {
+      expandBtn.addEventListener('click', function () {
+        var open = panel.classList.toggle('open');
+        expandBtn.setAttribute('aria-expanded', open);
+        panel.setAttribute('aria-hidden', !open);
+      });
+    }
+
     polygon.style.opacity = '0';
     polygon.style.transition = 'opacity 0.8s ease';
     requestAnimationFrame(function () {
@@ -839,13 +898,13 @@
   <script>
   (function () {
     var FONTS = [
-      { family: "'Bebas Neue', sans-serif",              weight: 400, spacing: '0.02em' },
-      { family: "'Barlow', sans-serif",                  weight: 700, spacing: '-0.02em' },
-      { family: "'Playfair Display', serif",             weight: 400, spacing: '0.01em' },
-      { family: "'Space Mono', monospace",               weight: 400, spacing: '-0.03em' },
-      { family: "'Cormorant Garamond', serif",           weight: 300, spacing: '0.04em' },
-      { family: "'Space Grotesk', sans-serif",           weight: 700, spacing: '-0.03em' },
-      { family: "'DM Serif Display', serif",             weight: 400, spacing: '0.01em' },
+      { family: "'Bebas Neue', sans-serif",    weight: 400, spacing: '0.02em' },
+      { family: "'Barlow', sans-serif",        weight: 700, spacing: '-0.02em' },
+      { family: "'Playfair Display', serif",   weight: 400, spacing: '0.01em' },
+      { family: "'Space Mono', monospace",     weight: 400, spacing: '-0.03em' },
+      { family: "'Cormorant Garamond', serif", weight: 300, spacing: '0.04em' },
+      { family: "'Space Grotesk', sans-serif", weight: 700, spacing: '-0.03em' },
+      { family: "'DM Serif Display', serif",   weight: 400, spacing: '0.01em' },
     ];
 
     var elName = document.getElementById('slot-name');
@@ -853,18 +912,17 @@
     var curName = 0, curTld = 0;
 
     function applyFont(el, f) {
-      el.style.fontFamily     = f.family;
-      el.style.fontWeight     = f.weight;
-      el.style.letterSpacing  = f.spacing;
+      el.style.fontFamily    = f.family;
+      el.style.fontWeight    = f.weight;
+      el.style.letterSpacing = f.spacing;
     }
 
-    /* initial font */
     applyFont(elName, FONTS[0]);
     applyFont(elTld,  FONTS[0]);
 
     function spin(el, curIdx, onDone) {
-      var STEP_MS = 300;   /* uniform pause between ticks */
-      var STEPS   = 3;     /* three deliberate ticks, then land */
+      var STEP_MS = 160;
+      var STEPS   = 3;
       var step    = 0;
 
       var targetIdx;
@@ -876,7 +934,6 @@
         el.classList.remove('ticking', 'landing');
         void el.offsetWidth;
         el.classList.add('ticking');
-
         step++;
         if (step < STEPS) {
           setTimeout(tick, STEP_MS);
@@ -893,21 +950,22 @@
       tick();
     }
 
-    function scheduleName() {
+    /* name and .ooo always spin together — .ooo follows name with a short stagger */
+    function scheduleNext() {
       setTimeout(function () {
-        spin(elName, curName, function (idx) { curName = idx; scheduleName(); });
-      }, 6000 + Math.random() * 5000);  /* 6–11 s */
+        spin(elName, curName, function (idx) {
+          curName = idx;
+          setTimeout(function () {
+            spin(elTld, curTld, function (idx2) {
+              curTld = idx2;
+              scheduleNext();
+            });
+          }, 100);
+        });
+      }, 3500 + Math.random() * 3000);
     }
 
-    function scheduleTld() {
-      setTimeout(function () {
-        spin(elTld, curTld, function (idx) { curTld = idx; scheduleTld(); });
-      }, 5000 + Math.random() * 4000);  /* 5–9 s */
-    }
-
-    /* staggered first fire */
-    setTimeout(scheduleName, 3500);
-    setTimeout(scheduleTld,  7000);
+    setTimeout(scheduleNext, 1200);
   }());
   </script>
   <script>
@@ -937,7 +995,7 @@
         'project.gamma.desc':  'Advanced Looker Studio dashboards for funnel KPIs, market trends and campaign performance — built for enterprise retail and travel clients.',
         'skills.label':        'Skills',
         'skills.hint':         'select to filter projects',
-        'footer.copy':         '© 2026 Diego Randazzo.',
+        'footer.copy':         '© 2025 Diego Randazzo — All content generated with AI',
       },
       it: {
         'nav.work':            'Lavoro',
@@ -963,7 +1021,7 @@
         'project.gamma.desc':  'Dashboard avanzate in Looker Studio per KPI di funnel, trend di mercato e performance di campagna — per clienti enterprise retail e travel.',
         'skills.label':        'Competenze',
         'skills.hint':         'seleziona per filtrare i progetti',
-        'footer.copy':         '© 2026 Diego Randazzo.',
+        'footer.copy':         '© 2025 Diego Randazzo — Tutti i contenuti presenti sono stati generati con AI',
       }
     };
 
@@ -1018,6 +1076,12 @@
   }());
   </script>
   <script src="tracking.js" defer></script>
+
+  <nav class="mobile-nav" aria-label="Section navigation">
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+  </nav>
 
 </body>
 </html>
