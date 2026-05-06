@@ -670,7 +670,7 @@
               <a class="card-link" href="https://github.com/die-gooo/vibeCity" target="_blank" rel="noopener">↗ GitHub</a>
             </div>
 
-            <div class="project-card" data-skills="frontend,sql,mobile,gtm,analytics">
+            <div class="project-card" data-skills="frontend,sql,ai">
               <div class="card-year">2025</div>
               <div class="card-title" data-i18n="project.livescore.title">Livescore Jules</div>
               <div class="card-desc" data-i18n="project.livescore.desc">Real-time futsal scoreboard for Italian Serie C1. Live updates via Supabase Realtime, push notifications per match, admin dashboard, GTM analytics.</div>
@@ -678,6 +678,16 @@
                 <span>Next.js</span><span>Supabase</span><span>GTM</span><span>Push API</span>
               </div>
               <a class="card-link" href="https://github.com/die-gooo/livescore-jules" target="_blank" rel="noopener">↗ GitHub</a>
+            </div>
+
+            <div class="project-card" data-skills="sql,ai,frontend">
+              <div class="card-year">2026</div>
+              <div class="card-title" data-i18n="project.geofascicolo.title">GeoFascicolo</div>
+              <div class="card-desc" data-i18n="project.geofascicolo.desc">Python FastAPI backend for automatic generation of the Fascicolo Tecnico Preliminare. Aggregates seismic, flood-risk, cadastral and real-estate data from Italian public government APIs.</div>
+              <div class="card-tags">
+                <span>Python</span><span>FastAPI</span><span>Open Data</span>
+              </div>
+              <a class="card-link" href="https://github.com/die-gooo/geofascicolo" target="_blank" rel="noopener">↗ GitHub</a>
             </div>
 
           </div>
@@ -737,11 +747,11 @@
       analytics: ['diegorandazzo.ooo', 'GTM Attribution Engine', 'CRO Reporting Suite', 'Livescore Jules'],
       cro:       ['CRO Reporting Suite'],
       dataviz:   ['CRO Reporting Suite'],
-      frontend:  ['diegorandazzo.ooo', 'GTM Attribution Engine', 'Eemage', 'Dinner Vote', 'CityVibe', 'Livescore Jules'],
+      frontend:  ['diegorandazzo.ooo', 'GTM Attribution Engine', 'Eemage', 'Dinner Vote', 'CityVibe', 'Livescore Jules', 'GeoFascicolo'],
       privacy:   [],
-      ai:        ['Eemage', 'CityVibe'],
-      sql:       ['Dinner Vote', 'Livescore Jules'],
-      mobile:    ['Livescore Jules'],
+      ai:        ['Eemage', 'CityVibe', 'GeoFascicolo'],
+      sql:       ['Dinner Vote', 'Livescore Jules', 'GeoFascicolo'],
+      mobile:    [],
     };
 
     var NS      = 'http://www.w3.org/2000/svg';
@@ -1039,8 +1049,10 @@
         'project.dinnervote.desc': 'React app for a group of friends to vote and rank restaurant evenings. Firebase Realtime DB, avatar login, category sliders, live leaderboard.',
         'project.cityvibe.title':  'CityVibe',
         'project.cityvibe.desc':   'Landing MVP — full-screen POV video background with Spotify embed. Built with Next.js, Vercel Blob and KV.',
-        'project.livescore.title': 'Livescore Jules',
-        'project.livescore.desc':  'Real-time futsal scoreboard for Italian Serie C1. Live updates via Supabase Realtime, push notifications per match, admin dashboard, GTM analytics.',
+        'project.livescore.title':     'Livescore Jules',
+        'project.livescore.desc':      'Real-time futsal scoreboard for Italian Serie C1. Live updates via Supabase Realtime, push notifications per match, admin dashboard, GTM analytics.',
+        'project.geofascicolo.title':  'GeoFascicolo',
+        'project.geofascicolo.desc':   'Python FastAPI backend for automatic generation of the Fascicolo Tecnico Preliminare. Aggregates seismic, flood-risk, cadastral and real-estate data from Italian public government APIs.',
         'skills.label':        'Skills',
         'skills.hint':         'select to filter projects',
         'footer.copy':         '© 2025 Diego Randazzo — All content generated with AI',
@@ -1073,8 +1085,10 @@
         'project.dinnervote.desc': 'App React per votare e classificare serate al ristorante in gruppo. Firebase Realtime, login con avatar, slider per categoria, classifica live.',
         'project.cityvibe.title':  'CityVibe',
         'project.cityvibe.desc':   'Landing MVP — video POV a schermo intero con Spotify embed. Costruito con Next.js, Vercel Blob e KV.',
-        'project.livescore.title': 'Livescore Jules',
-        'project.livescore.desc':  'Tabellone real-time per il futsal Serie C1. Aggiornamenti live via Supabase Realtime, push notification per partita, dashboard admin, GTM analytics.',
+        'project.livescore.title':     'Livescore Jules',
+        'project.livescore.desc':      'Tabellone real-time per il futsal Serie C1. Aggiornamenti live via Supabase Realtime, push notification per partita, dashboard admin, GTM analytics.',
+        'project.geofascicolo.title':  'GeoFascicolo',
+        'project.geofascicolo.desc':   'Backend Python FastAPI per la generazione automatica del Fascicolo Tecnico Preliminare. Aggrega dati sismici, idrogeologici, catastali e quotazioni OMI da API pubbliche italiane.',
         'skills.label':        'Competenze',
         'skills.hint':         'seleziona per filtrare i progetti',
         'footer.copy':         '© 2025 Diego Randazzo — Tutti i contenuti presenti sono stati generati con AI',
