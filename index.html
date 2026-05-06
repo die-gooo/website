@@ -87,6 +87,8 @@
   }
   </script>
 
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" href="favicon.svg" />
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -104,7 +106,7 @@
       --ink-rgb:    17, 17, 17;
       --accent:     #7c3aed;
       --accent-rgb: 124, 58, 237;
-      --muted:      #8c8c8c;
+      --muted:      #6b6b6b;
     }
 
     [data-theme="dark"] {
@@ -113,7 +115,7 @@
       --ink-rgb:    240, 238, 236;
       --accent:     #a78bfa;
       --accent-rgb: 167, 139, 250;
-      --muted:      #666666;
+      --muted:      #9a9a9a;
     }
 
     /* smooth theme crossfade */
@@ -179,7 +181,7 @@
     .slot.ticking { animation: slot-tick 0.2s ease-out both; }
     .slot.landing { animation: slot-land 0.45s cubic-bezier(0.22,1,0.36,1) both; }
     .hero-bio {
-      font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 300;
+      font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 400;
       line-height: 1.85; color: var(--muted); max-width: 480px; margin-bottom: 2.5rem;
     }
     .hero-cta { display: flex; gap: 2rem; align-items: center; }
@@ -284,7 +286,7 @@
     .project-item.highlighted:last-child { border-bottom-color: var(--accent); }
     .project-left { display: flex; flex-direction: column; gap: 0.4rem; }
     .project-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.04em; color: var(--ink); }
-    .project-desc { font-family: 'Barlow', sans-serif; font-size: 0.8rem; font-weight: 300; color: var(--muted); }
+    .project-desc { font-family: 'Barlow', sans-serif; font-size: 0.8rem; font-weight: 400; color: var(--muted); }
     .project-skill-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.3rem; }
     .project-skill-tag {
       font-family: 'Barlow', sans-serif; font-size: 0.62rem; font-weight: 500;
@@ -361,31 +363,74 @@
       footer { flex-direction: column; gap: 0.75rem; }
     }
 
-    /* TIMELINE */
-    .timeline { position: relative; padding-left: 1.5rem; }
-    .timeline::before {
-      content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 1rem;
-      width: 1px; background: rgba(var(--ink-rgb),0.12);
+    /* HORIZONTAL TIMELINE */
+    .timeline-h { display: flex; position: relative; padding-top: 2.5rem; }
+    .timeline-h::before {
+      content: ''; position: absolute;
+      top: 0; left: 3px; right: 0; height: 1px;
+      background: rgba(var(--ink-rgb),0.12);
     }
-    .timeline-item { position: relative; padding-bottom: 2.5rem; }
-    .timeline-item:last-child { padding-bottom: 0; }
-    .timeline-item::before {
-      content: ''; position: absolute; left: -1.5rem; top: 0.48rem;
+    .timeline-h-item { flex: 1; position: relative; padding-top: 1.25rem; padding-right: 2rem; }
+    .timeline-h-item:last-child { padding-right: 0; }
+    .timeline-h-item::before {
+      content: ''; position: absolute; top: -3px; left: 0;
       width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-      transform: translateX(-2.5px);
     }
-    .timeline-company {
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem;
-      letter-spacing: 0.04em; color: var(--ink);
+    .timeline-h-company {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem;
+      letter-spacing: 0.04em; color: var(--ink); margin-bottom: 0.15rem;
     }
-    .timeline-role {
-      font-family: 'Barlow', sans-serif; font-size: 0.78rem;
-      font-weight: 400; color: var(--muted); margin-top: 0.15rem;
+    .timeline-h-role {
+      font-family: 'Barlow', sans-serif; font-size: 0.74rem;
+      font-weight: 400; color: var(--muted);
     }
-    .timeline-year {
-      font-family: 'Barlow', sans-serif; font-size: 0.65rem;
-      letter-spacing: 0.1em; color: var(--accent); margin-top: 0.3rem;
-      text-transform: uppercase;
+    .timeline-h-period {
+      font-family: 'Barlow', sans-serif; font-size: 0.62rem;
+      letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase;
+      margin-top: 0.25rem; margin-bottom: 0.6rem;
+    }
+    .timeline-h-tools { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .timeline-h-tool {
+      font-family: 'Barlow', sans-serif; font-size: 0.6rem; font-weight: 400;
+      color: var(--muted); letter-spacing: 0.04em;
+      padding: 0.15rem 0.45rem;
+      border: 1px solid rgba(var(--ink-rgb),0.1); border-radius: 9999px;
+    }
+
+    /* SKILLS PANEL */
+    #skills { padding-top: 1.5rem; }
+    .skills-expand-btn {
+      font-family: 'Barlow', sans-serif; font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); background: none;
+      border: 1px solid rgba(var(--ink-rgb),0.14); border-radius: 4px;
+      padding: 0.22rem 0.7rem; transition: color 0.2s, border-color 0.2s;
+    }
+    .skills-expand-btn:hover { color: var(--ink); border-color: rgba(var(--ink-rgb),0.35); }
+    .skills-expand-btn .btn-arrow { display: inline-block; transition: transform 0.3s; }
+    .skills-expand-btn[aria-expanded="true"] .btn-arrow { transform: rotate(180deg); }
+    .skills-panel {
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.45s ease, opacity 0.3s ease;
+    }
+    .skills-panel.open { max-height: 600px; opacity: 1; }
+    .skills-panel-inner {
+      border-top: 1px solid rgba(var(--ink-rgb),0.08);
+      margin-top: 1.5rem; padding-top: 1.5rem;
+      display: flex; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .skill-entry { display: flex; flex-direction: column; gap: 0.35rem; min-width: 90px; }
+    .skill-entry-projects {
+      font-family: 'Barlow', sans-serif; font-size: 0.6rem;
+      color: var(--muted); line-height: 1.6; letter-spacing: 0.03em;
+    }
+
+    @media (max-width: 600px) {
+      .timeline-h { flex-direction: column; padding-top: 0; padding-left: 1.5rem; }
+      .timeline-h::before { top: 3px; bottom: 3px; left: 0; right: auto; width: 1px; height: auto; }
+      .timeline-h-item { padding-right: 0; padding-bottom: 2rem; padding-top: 0; }
+      .timeline-h-item:last-child { padding-bottom: 0; }
+      .timeline-h-item::before { top: 0; left: -1.8rem; transform: none; }
     }
 
     /* PROJECT SLIDER */
@@ -412,7 +457,7 @@
     }
     .card-desc {
       font-family: 'Barlow', sans-serif; font-size: 0.82rem;
-      font-weight: 300; color: var(--muted); line-height: 1.7;
+      font-weight: 400; color: var(--muted); line-height: 1.7;
     }
     .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem; }
     .card-tags span {
@@ -468,7 +513,7 @@
 
       <!-- HERO -->
       <section class="hero" id="hero">
-        <div class="hero-label" data-i18n="hero.label">Digital Analytics &amp; CRO · Merkle Italia</div>
+        <div class="hero-label" data-i18n="hero.label">Digital Analytics &amp; CRO</div>
         <div class="headline-wrap">
           <h1 class="headline"><span class="slot" id="slot-name">diegorandazzo</span><span class="slot slot-tld" id="slot-tld">.ooo</span></h1>
         </div>
@@ -486,24 +531,46 @@
         <div class="section-header">
           <span class="section-label" data-i18n="work.label">Work</span>
         </div>
-        <div class="timeline" id="work-list">
+        <div class="timeline-h" id="work-list">
 
-          <div class="timeline-item">
-            <div class="timeline-company" data-i18n="work.item1.title">Merkle Italia</div>
-            <div class="timeline-role">Sr. Digital Analytics &amp; CRO Specialist</div>
-            <div class="timeline-year">2024 — present</div>
+          <div class="timeline-h-item">
+            <div class="timeline-h-company" data-i18n="work.item1.title">Merkle Italia</div>
+            <div class="timeline-h-role">Sr. Digital Analytics &amp; CRO Specialist</div>
+            <div class="timeline-h-period">2024 — present</div>
+            <div class="timeline-h-tools">
+              <span class="timeline-h-tool">GTM</span>
+              <span class="timeline-h-tool">GA4</span>
+              <span class="timeline-h-tool">VWO</span>
+              <span class="timeline-h-tool">Clarity</span>
+              <span class="timeline-h-tool">Looker Studio</span>
+              <span class="timeline-h-tool">JavaScript</span>
+            </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="timeline-company" data-i18n="work.item2.title">Intarget srl</div>
-            <div class="timeline-role">Data Analyst</div>
-            <div class="timeline-year">2022 — 2024</div>
+          <div class="timeline-h-item">
+            <div class="timeline-h-company" data-i18n="work.item2.title">Intarget srl</div>
+            <div class="timeline-h-role">Data Analyst</div>
+            <div class="timeline-h-period">2022 — 2024</div>
+            <div class="timeline-h-tools">
+              <span class="timeline-h-tool">Tealium iQ</span>
+              <span class="timeline-h-tool">Meta CAPI</span>
+              <span class="timeline-h-tool">TikTok</span>
+              <span class="timeline-h-tool">Criteo</span>
+              <span class="timeline-h-tool">GA4</span>
+            </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="timeline-company" data-i18n="work.item3.title">Dibix srl</div>
-            <div class="timeline-role">Web Developer</div>
-            <div class="timeline-year">2020 — 2022</div>
+          <div class="timeline-h-item">
+            <div class="timeline-h-company" data-i18n="work.item3.title">Dibix srl</div>
+            <div class="timeline-h-role">Web Developer</div>
+            <div class="timeline-h-period">2020 — 2022</div>
+            <div class="timeline-h-tools">
+              <span class="timeline-h-tool">WordPress</span>
+              <span class="timeline-h-tool">Magento</span>
+              <span class="timeline-h-tool">Shopify</span>
+              <span class="timeline-h-tool">Hotjar</span>
+              <span class="timeline-h-tool">GA → GA4</span>
+            </div>
           </div>
 
         </div>
@@ -558,12 +625,18 @@
       <section class="section" id="skills">
         <div class="section-header">
           <span class="section-label" data-i18n="skills.label">Skills</span>
+          <button class="skills-expand-btn" id="skills-expand-btn" aria-expanded="false">
+            All Skills <span class="btn-arrow">↓</span>
+          </button>
         </div>
         <div class="skills-layout">
           <div class="radar-container">
             <svg id="radar-chart" viewBox="0 0 280 280" width="260" height="260"></svg>
           </div>
           <div class="skills-tags" id="skills-tags"></div>
+        </div>
+        <div class="skills-panel" id="skills-panel" aria-hidden="true">
+          <div class="skills-panel-inner" id="skills-panel-inner"></div>
         </div>
       </section>
 
@@ -595,8 +668,18 @@
       { name: 'App Tracking',  slug: 'mobile',   level: 65 },
     ];
 
-    /* GA4 → analytics, GTM → gtm, JS/HTML/CSS → frontend: always highlighted */
-    var CORE = ['gtm', 'analytics', 'frontend'];
+    /* Skill → project names mapping (for the All Skills panel) */
+    var SKILL_PROJECTS = {
+      gtm:       ['diegorandazzo.ooo', 'GTM Attribution Engine'],
+      analytics: ['diegorandazzo.ooo', 'GTM Attribution Engine', 'CRO Reporting Suite'],
+      cro:       ['CRO Reporting Suite'],
+      dataviz:   ['CRO Reporting Suite'],
+      frontend:  ['diegorandazzo.ooo', 'GTM Attribution Engine'],
+      privacy:   [],
+      ai:        [],
+      sql:       [],
+      mobile:    [],
+    };
 
     var NS      = 'http://www.w3.org/2000/svg';
     var SIZE    = 280;
@@ -605,7 +688,6 @@
     var LABEL_R = MAX_R + 26;
     var N       = SKILLS.length;
 
-    /* ── SVG helpers ── */
     function svgEl(tag, attrs) {
       var e = document.createElementNS(NS, tag);
       Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
@@ -632,7 +714,6 @@
         class: p === 100 ? 'radar-ring radar-ring-outer' : 'radar-ring radar-ring-inner'
       }));
     });
-
     SKILLS.forEach(function (s, i) {
       var p = pt(i, 100);
       svg.appendChild(svgEl('line', {
@@ -648,7 +729,6 @@
       var p = pt(i, s.level);
       svg.appendChild(svgEl('circle', { cx: p[0], cy: p[1], r: '3', id: 'dot-' + s.slug, class: 'radar-dot' }));
     });
-
     SKILLS.forEach(function (s, i) {
       var a      = angle(i);
       var lx     = CX + LABEL_R * Math.cos(a);
@@ -673,14 +753,41 @@
       tagsEl.appendChild(span);
     });
 
-    /* ── Skill highlight (driven by active project) ── */
-    function setSkills(projectSlugs) {
-      var active = CORE.slice();
-      (projectSlugs || []).forEach(function (s) {
-        if (active.indexOf(s) === -1) active.push(s);
-      });
+    /* ── Build "All Skills" panel ── */
+    var panelInner = document.getElementById('skills-panel-inner');
+    if (panelInner) {
       SKILLS.forEach(function (s) {
-        var on    = active.indexOf(s.slug) !== -1;
+        var entry = document.createElement('div');
+        entry.className = 'skill-entry';
+        var pill = document.createElement('span');
+        pill.className = 'skill-tag';
+        pill.textContent = s.name;
+        entry.appendChild(pill);
+        var projs = SKILL_PROJECTS[s.slug] || [];
+        var projEl = document.createElement('div');
+        projEl.className = 'skill-entry-projects';
+        projEl.textContent = projs.length ? projs.join('\n') : '—';
+        projEl.style.whiteSpace = 'pre-line';
+        entry.appendChild(projEl);
+        panelInner.appendChild(entry);
+      });
+    }
+
+    /* ── Toggle All Skills panel ── */
+    var expandBtn = document.getElementById('skills-expand-btn');
+    var panel     = document.getElementById('skills-panel');
+    if (expandBtn && panel) {
+      expandBtn.addEventListener('click', function () {
+        var open = panel.classList.toggle('open');
+        expandBtn.setAttribute('aria-expanded', open);
+        panel.setAttribute('aria-hidden', !open);
+      });
+    }
+
+    /* ── Skill highlight (driven by active project) ── */
+    function setSkills(slugs) {
+      SKILLS.forEach(function (s) {
+        var on    = slugs.indexOf(s.slug) !== -1;
         var dot   = document.getElementById('dot-'   + s.slug);
         var label = document.getElementById('label-' + s.slug);
         var axis  = document.getElementById('axis-'  + s.slug);
@@ -712,7 +819,6 @@
     if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
     if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
 
-    /* touch swipe support */
     var touchX = 0;
     if (track) {
       track.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
@@ -722,7 +828,6 @@
       });
     }
 
-    /* ── Init: fade polygon + set first slide ── */
     polygon.style.opacity = '0';
     polygon.style.transition = 'opacity 0.8s ease';
     requestAnimationFrame(function () {
@@ -812,7 +917,7 @@
         'nav.work':            'Work',
         'nav.projects':        'Projects',
         'nav.skills':          'Skills',
-        'hero.label':          'Digital Analytics & CRO · Merkle Italia',
+        'hero.label':          'Digital Analytics & CRO',
         'hero.bio':            'Digital analytics and CRO specialist with hands-on experience in tag management, tracking implementation, A/B testing and funnel optimisation. I combine technical depth with a data-driven approach to behaviour analysis — and I use AI tools daily, both in my workflow and in personal projects.',
         'hero.cta.secondary':  'Get In Touch →',
         'work.label':          'Work',
@@ -838,7 +943,7 @@
         'nav.work':            'Lavoro',
         'nav.projects':        'Progetti',
         'nav.skills':          'Competenze',
-        'hero.label':          'Digital Analytics & CRO · Merkle Italia',
+        'hero.label':          'Digital Analytics & CRO',
         'hero.bio':            'Specialista in digital analytics e CRO con esperienza concreta in tag management, tracking implementation, A/B testing e ottimizzazione del funnel. Unisco profondità tecnica e approccio data-driven all\'analisi comportamentale — e utilizzo strumenti AI ogni giorno, nel workflow e nei progetti personali.',
         'hero.cta.secondary':  'Scrivimi →',
         'work.label':          'Lavoro',
